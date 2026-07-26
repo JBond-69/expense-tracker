@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Poppins', 'Inter', -apple-system, sans-serif; }
+    * { box-sizing: border-box; }
+    input, button, select { font-family: inherit; }
+    ::-webkit-scrollbar { width: 0; height: 0; }
+    @keyframes toastIn { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+  </style>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+</helmet>
+<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#EDEFF3;padding:40px 0">
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{402}}" height="{{874}}" dark="{{isDarkScreen}}" hint-size="402,874">
+  <div style="height:100%;display:flex;flex-direction:column;position:relative;overflow:hidden;background:#F6F8FB">
+
+    <sc-if value="{{isLogin}}" hint-placeholder-val="{{true}}">
+      <div style="height:100%;display:flex;flex-direction:column;justify-content:space-between;background:#07133E;padding:70px 28px 40px;box-sizing:border-box;position:relative;overflow:hidden">
+        <div style="position:absolute;top:-90px;right:-90px;width:240px;height:240px;border-radius:999px;background:radial-gradient(circle, rgba(72,105,236,0.55), rgba(72,105,236,0) 70%)"></div>
+        <div style="position:relative;z-index:1">
+          <div style="display:flex;align-items:center;margin-bottom:44px">
+            <div style="display:flex;align-items:center">
+              <div style="width:8px;height:18px;background:#fff;transform:skewX(-18deg);border-radius:1px"></div>
+              <div style="width:8px;height:18px;background:#fff;transform:skewX(18deg);border-radius:1px;margin-left:-2px"></div>
+            </div>
+            <span style="color:#fff;font-weight:700;font-size:19px;letter-spacing:0.1em;margin-left:12px">TALLY</span>
+          </div>
+          <div style="color:#fff;font-size:32px;font-weight:700;line-height:1.25;margin-bottom:14px">Know exactly<br/>where it goes.</div>
+          <div style="color:rgba(255,255,255,0.62);font-size:15px;line-height:1.55">Track expenses, credits and investments in one place — organized by month, summarized automatically.</div>
+        </div>
+        <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:12px">
+          <button onClick="{{loginGoogle}}" style="display:flex;align-items:center;justify-content:center;gap:10px;height:52px;border-radius:12px;background:#fff;border:none;font-weight:600;font-size:15px;color:#101116;cursor:pointer">
+            <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.57 2.7-3.88 2.7-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.95 10.7A5.4 5.4 0 0 1 3.68 9c0-.59.1-1.17.27-1.7V4.97H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.03l2.99-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.5.46 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .96 4.97l2.99 2.33C4.66 5.17 6.65 3.58 9 3.58z"/></svg>
+            Continue with Google
+          </button>
+          <button onClick="{{loginPhone}}" style="display:flex;align-items:center;justify-content:center;gap:10px;height:52px;border-radius:12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.28);font-weight:600;font-size:15px;color:#fff;cursor:pointer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Continue with phone
+          </button>
+          <div style="text-align:center;color:rgba(255,255,255,0.35);font-size:11px;margin-top:8px">By continuing you agree to the Terms &amp; Privacy Policy</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isOtp}}" hint-placeholder-val="{{false}}">
+      <div style="height:100%;display:flex;flex-direction:column;background:#fff;padding:64px 24px 32px;box-sizing:border-box">
+        <button onClick="{{backToLogin}}" style="width:36px;height:36px;border-radius:999px;border:1px solid #D7D8DD;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer">
+          <svg width="9" height="15" viewBox="0 0 9 15" fill="none"><path d="M8 1L1.5 7.5 8 14" stroke="#101116" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div style="margin-top:22px">
+          <div style="font-size:22px;font-weight:700;color:#101116">Enter the code</div>
+          <div style="color:#4E566C;font-size:14px;margin-top:6px;line-height:1.5">We sent a 6-digit code to {{otpPhoneDisplay}}</div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:32px">
+          <sc-for list="{{otpInputs}}" as="digit" hint-placeholder-count="6">
+            <input value="{{digit.value}}" onChange="{{digit.onChange}}" onKeyDown="{{digit.onKeyDown}}" ref="{{digit.setRef}}" maxlength="1" inputmode="numeric" style="width:42px;height:54px;text-align:center;font-size:22px;font-family:'Roboto Mono',monospace;border:1.5px solid #D7D8DD;border-radius:10px;outline:none;color:#101116" />
+          </sc-for>
+        </div>
+        <button onClick="{{verifyOtp}}" disabled="{{!canVerify}}" style="{{verifyBtnStyle}}">Verify &amp; continue</button>
+        <div style="text-align:center;color:#4E566C;font-size:13px;margin-top:18px">Didn't get a code? <a href="javascript:void(0)" onClick="{{resendOtp}}" style="color:#4869EC;font-weight:600">Resend</a></div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isMain}}" hint-placeholder-val="{{false}}">
+      <div style="height:100%;display:flex;flex-direction:column;position:relative">
+
+        <div style="flex:1;overflow:auto;padding-top:56px">
+
+          <sc-if value="{{showHomeSummary}}" hint-placeholder-val="{{true}}">
+            <div style="padding:8px 20px 110px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+                <div style="font-size:22px;font-weight:700;color:#101116;letter-spacing:0.02em">Tally</div>
+                <button onClick="{{goAccount}}" style="width:36px;height:36px;border-radius:999px;background:#E3E8FC;color:#2A4CC5;border:none;font-weight:700;font-size:14px;cursor:pointer">P</button>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{monthCards}}" as="m" hint-placeholder-count="4">
+                  <button onClick="{{m.open}}" style="display:flex;flex-direction:column;gap:10px;background:#fff;border:1px solid #D7D8DD;border-radius:14px;padding:14px 16px;text-align:left;cursor:pointer">
+                    <div style="display:flex;align-items:center;justify-content:space-between">
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <div style="font-size:15px;font-weight:700;color:#101116">{{m.label}}</div>
+                        <sc-if value="{{m.isCurrent}}" hint-placeholder-val="{{false}}">
+                          <div style="padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700;background:#E3E8FC;color:#2A4CC5">CURRENT</div>
+                        </sc-if>
+                      </div>
+                      <svg width="7" height="13" viewBox="0 0 7 13" fill="none"><path d="M1 1L6 6.5 1 12" stroke="#A4A7B0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div style="display:flex;gap:8px">
+                      <div style="flex:1;background:#FBEAEB;border-radius:8px;padding:7px 8px">
+                        <div style="font-size:10px;color:#BF1D30;font-weight:600">Expenses</div>
+                        <div style="font-family:'Roboto Mono',monospace;font-size:12px;font-weight:600;color:#101116;margin-top:2px">{{m.expensesFmt}}</div>
+                      </div>
+                      <div style="flex:1;background:#E3F7EB;border-radius:8px;padding:7px 8px">
+                        <div style="font-size:10px;color:#037C5A;font-weight:600">Credits</div>
+                        <div style="font-family:'Roboto Mono',monospace;font-size:12px;font-weight:600;color:#101116;margin-top:2px">{{m.creditsFmt}}</div>
+                      </div>
+                      <div style="flex:1;background:#F2DCFA;border-radius:8px;padding:7px 8px">
+                        <div style="font-size:10px;color:#5C25F7;font-weight:600">Invest.</div>
+                        <div style="font-family:'Roboto Mono',monospace;font-size:12px;font-weight:600;color:#101116;margin-top:2px">{{m.investmentsFmt}}</div>
+                      </div>
+                      <div style="flex:1;background:#F1F4FE;border-radius:8px;padding:7px 8px">
+                        <div style="font-size:10px;color:#2A4CC5;font-weight:600">Savings</div>
+                        <div style="font-family:'Roboto Mono',monospace;font-size:12px;font-weight:600;color:#101116;margin-top:2px">{{m.savingsFmt}}</div>
+                      </div>
+                    </div>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{showHomeDetail}}" hint-placeholder-val="{{false}}">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 16px 10px;position:sticky;top:0;background:#F6F8FB;z-index:5">
+                <button onClick="{{closeDetail}}" style="width:34px;height:34px;border-radius:999px;border:1px solid #D7D8DD;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0">
+                  <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M7 1L1.5 6.5 7 12" stroke="#101116" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div style="font-weight:700;font-size:15px;color:#101116">{{detail.monthLabel}}</div>
+                <div style="display:flex;background:#EDEFF3;border-radius:999px;padding:3px;gap:2px;flex-shrink:0">
+                  <button onClick="{{setViewList}}" style="{{listToggleStyle}}">List</button>
+                  <button onClick="{{setViewGroups}}" style="{{groupsToggleStyle}}">Card</button>
+                </div>
+              </div>
+
+              <sc-if value="{{isViewList}}" hint-placeholder-val="{{true}}">
+                <div style="padding:0 16px 8px">
+                  <div style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #D7D8DD;border-radius:10px;padding:0 12px;height:38px">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A4A7B0" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                    <input value="{{detail.search}}" onChange="{{onDetailSearchChange}}" placeholder="{{detail.searchPlaceholder}}" style="flex:1;border:none;outline:none;font-size:13px;background:transparent" />
+                  </div>
+                </div>
+                <div style="padding:0 16px 110px">
+                  <div style="display:flex;align-items:center;gap:8px;padding:0 4px 6px;font-size:10px;font-weight:700;color:#A4A7B0;text-transform:uppercase;letter-spacing:0.03em">
+                    <div style="width:18px"></div>
+                    <div style="flex:1">Description</div>
+                    <div style="width:80px">Group</div>
+                    <div style="width:70px;text-align:right">Amount</div>
+                    <div style="width:44px;text-align:right">Date</div>
+                  </div>
+                  <div style="background:#fff;border:1px solid #D7D8DD;border-radius:12px;overflow:hidden">
+                    <sc-for list="{{detail.rows}}" as="r" hint-placeholder-count="6">
+                      <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid #F0F1F3">
+                        <input type="checkbox" checked="{{r.rowSelected}}" onChange="{{r.onToggleSelect}}" style="width:16px;height:16px;flex-shrink:0" />
+                        <input value="{{r.descValue}}" onChange="{{r.onDescChange}}" style="flex:1;min-width:0;border:none;outline:none;background:transparent;font-size:13px;color:#101116" />
+                        <select value="{{r.groupValue}}" onChange="{{r.onGroupChange}}" style="width:80px;border:none;outline:none;background:transparent;font-size:11px;color:#4E566C;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+                          <sc-for list="{{r.groupOptions}}" as="opt" hint-placeholder-count="2">
+                            <option value="{{opt.value}}">{{opt.label}}</option>
+                          </sc-for>
+                        </select>
+                        <input value="{{r.amountValue}}" onChange="{{r.onAmountChange}}" inputmode="decimal" style="width:70px;border:none;outline:none;background:transparent;font-family:'Roboto Mono',monospace;font-size:12px;text-align:right;color:{{r.amountColor}};font-weight:600" />
+                        <input value="{{r.dayValue}}" onChange="{{r.onDayChange}}" inputmode="numeric" style="width:44px;border:none;outline:none;background:transparent;font-size:12px;text-align:right;color:#7585A0" />
+                      </div>
+                    </sc-for>
+                    <div style="display:flex;gap:6px;padding:10px;background:#F8F9FB">
+                      <div style="flex:1;text-align:center"><div style="font-size:9px;color:#BF1D30;font-weight:700">DEBIT</div><div style="font-family:'Roboto Mono',monospace;font-size:12px;font-weight:700;color:#101116">{{detail.subtotal.expensesFmt}}</div></div>
+                      <div style="flex:1;text-align:center"><div style="font-size:9px;color:#037C5A;font-weight:700">CREDIT</div><div style="font-family:'Roboto Mono',monospace;font-size:12px;font-weight:700;color:#101116">{{detail.subtotal.creditsFmt}}</div></div>
+                      <div style="flex:1;text-align:center"><div style="font-size:9px;color:#5C25F7;font-weight:700">INVEST.</div><div style="font-family:'Roboto Mono',monospace;font-size:12px;font-weight:700;color:#101116">{{detail.subtotal.investmentsFmt}}</div></div>
+                      <div style="flex:1;text-align:center"><div style="font-size:9px;color:#2A4CC5;font-weight:700">SAVINGS</div><div style="font-family:'Roboto Mono',monospace;font-size:12px;font-weight:700;color:#101116">{{detail.subtotal.savingsFmt}}</div></div>
+                    </div>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{isViewGroups}}" hint-placeholder-val="{{false}}">
+                <div style="display:flex;flex-direction:column;gap:10px;padding:8px 16px 110px">
+                  <sc-for list="{{detail.groups}}" as="g" hint-placeholder-count="3">
+                    <div style="background:#fff;border:1px solid #D7D8DD;border-radius:12px;overflow:hidden">
+                      <button onClick="{{g.toggle}}" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px;background:none;border:none;text-align:left;cursor:pointer">
+                        <div style="width:10px;height:10px;border-radius:999px;flex-shrink:0;background:{{g.color.fg}}"></div>
+                        <div style="flex:1">
+                          <div style="font-size:14px;font-weight:600;color:#101116">{{g.name}}</div>
+                          <div style="font-size:12px;color:#A4A7B0;margin-top:2px">{{g.typeLabel}} · {{g.count}} transactions</div>
+                        </div>
+                        <div style="font-family:'Roboto Mono',monospace;font-weight:600;font-size:14px;color:{{g.amountColor}}">{{g.totalFmt}}</div>
+                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="{{g.chevronStyle}}"><path d="M1 1l4 4 4-4" stroke="#A4A7B0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <sc-if value="{{g.expanded}}" hint-placeholder-val="{{false}}">
+                        <div style="border-top:1px solid #F0F1F3;padding:6px 14px 10px;display:flex;flex-direction:column;gap:8px">
+                          <sc-for list="{{g.items}}" as="t" hint-placeholder-count="2">
+                            <div style="display:flex;align-items:center;gap:10px;padding:6px 0">
+                              <div style="flex:1;min-width:0">
+                                <div style="font-size:13px;color:#101116;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{t.description}}</div>
+                                <div style="font-size:11px;color:#A4A7B0">{{t.dayLabel}}</div>
+                              </div>
+                              <div style="font-family:'Roboto Mono',monospace;font-size:13px;color:#4E566C">{{t.amountFmt}}</div>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{tabIsIgnored}}" hint-placeholder-val="{{false}}">
+            <div style="padding:8px 20px 110px">
+              <div style="font-size:22px;font-weight:700;color:#101116;margin-bottom:4px">Ignored transactions</div>
+              <div style="font-size:13px;color:#4E566C;margin-bottom:14px;line-height:1.5">Detected from email &amp; SMS but not yet confirmed.</div>
+              <div style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #D7D8DD;border-radius:10px;padding:0 12px;height:38px;margin-bottom:12px">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A4A7B0" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                <input value="{{ignoredSearch}}" onChange="{{onIgnoredSearchChange}}" placeholder="Search ignored transactions" style="flex:1;border:none;outline:none;font-size:13px;background:transparent" />
+              </div>
+              <sc-if value="{{ignoredEmpty}}" hint-placeholder-val="{{false}}">
+                <div style="text-align:center;color:#A4A7B0;font-size:14px;padding:60px 20px">No ignored transactions right now.</div>
+              </sc-if>
+              <sc-if value="{{ignoredHasItems}}" hint-placeholder-val="{{true}}">
+                <div style="display:flex;align-items:center;gap:6px;padding:0 4px 6px;font-size:10px;font-weight:700;color:#A4A7B0;text-transform:uppercase;letter-spacing:0.03em">
+                  <div style="width:16px"></div>
+                  <div style="flex:1">Description</div>
+                  <div style="width:70px">Group</div>
+                  <div style="width:58px;text-align:right">Amount</div>
+                  <div style="width:32px;text-align:right">Date</div>
+                  <div style="width:56px"></div>
+                </div>
+                <div style="background:#fff;border:1px solid #D7D8DD;border-radius:12px;overflow:hidden">
+                  <sc-for list="{{ignoredList}}" as="it" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid #F0F1F3">
+                      <input type="checkbox" checked="{{it.rowSelected}}" onChange="{{it.onToggleSelect}}" style="width:14px;height:14px;flex-shrink:0" />
+                      <input value="{{it.descValue}}" onChange="{{it.onDescChange}}" style="flex:1;min-width:0;border:none;outline:none;background:transparent;font-size:12px;color:#101116" />
+                      <select value="{{it.groupValue}}" onChange="{{it.onGroupChange}}" style="width:70px;border:none;outline:none;background:transparent;font-size:10px;color:#4E566C;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+                        <sc-for list="{{it.groupOptions}}" as="opt" hint-placeholder-count="2">
+                          <option value="{{opt.value}}">{{opt.label}}</option>
+                        </sc-for>
+                      </select>
+                      <input value="{{it.amountValue}}" onChange="{{it.onAmountChange}}" inputmode="decimal" style="width:58px;border:none;outline:none;background:transparent;font-family:'Roboto Mono',monospace;font-size:11px;text-align:right;color:{{it.amountColor}};font-weight:600" />
+                      <input value="{{it.dayValue}}" onChange="{{it.onDayChange}}" inputmode="numeric" style="width:32px;border:none;outline:none;background:transparent;font-size:11px;text-align:right;color:#7585A0" />
+                      <div style="width:56px;display:flex;gap:4px;justify-content:flex-end">
+                        <button onClick="{{it.confirm}}" title="Confirm" style="width:22px;height:22px;border-radius:999px;background:#E3F7EB;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#037C5A" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        </button>
+                        <button onClick="{{it.discard}}" title="Discard" style="width:22px;height:22px;border-radius:999px;background:#FBEAEB;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer">
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#BF1D30" stroke-width="3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                        </button>
+                      </div>
+                    </div>
+                  </sc-for>
+                  <div style="display:flex;gap:6px;padding:10px;background:#F8F9FB">
+                    <div style="flex:1;text-align:center"><div style="font-size:9px;color:#BF1D30;font-weight:700">DEBIT</div><div style="font-family:'Roboto Mono',monospace;font-size:12px;font-weight:700;color:#101116">{{ignoredSubtotal.expensesFmt}}</div></div>
+                    <div style="flex:1;text-align:center"><div style="font-size:9px;color:#037C5A;font-weight:700">CREDIT</div><div style="font-family:'Roboto Mono',monospace;font-size:12px;font-weight:700;color:#101116">{{ignoredSubtotal.creditsFmt}}</div></div>
+                    <div style="flex:1;text-align:center"><div style="font-size:9px;color:#5C25F7;font-weight:700">INVEST.</div><div style="font-family:'Roboto Mono',monospace;font-size:12px;font-weight:700;color:#101116">{{ignoredSubtotal.investmentsFmt}}</div></div>
+                    <div style="flex:1;text-align:center"><div style="font-size:9px;color:#2A4CC5;font-weight:700">SAVINGS</div><div style="font-family:'Roboto Mono',monospace;font-size:12px;font-weight:700;color:#101116">{{ignoredSubtotal.savingsFmt}}</div></div>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{tabIsInsights}}" hint-placeholder-val="{{false}}">
+            <div style="padding:8px 20px 110px">
+              <div style="font-size:22px;font-weight:700;color:#101116;margin-bottom:4px">Insights</div>
+              <div style="font-size:13px;color:#4E566C;margin-bottom:18px;line-height:1.5">More views coming soon.</div>
+              <div style="background:#fff;border:1px solid #D7D8DD;border-radius:12px;padding:14px;margin-bottom:12px">
+                <div style="font-size:13px;font-weight:600;color:#101116;margin-bottom:12px">Spend by category · {{latestMonth.short}}</div>
+                <div style="display:flex;flex-direction:column;gap:10px">
+                  <sc-for list="{{categorySpend}}" as="s" hint-placeholder-count="5">
+                    <div>
+                      <div style="display:flex;justify-content:space-between;font-size:12px;color:#4E566C;margin-bottom:4px"><span>{{s.category}}</span><span style="font-family:'Roboto Mono',monospace">{{s.amountFmt}}</span></div>
+                      <div style="height:8px;border-radius:4px;background:#F0F1F3"><div style="height:8px;border-radius:4px;background:{{s.fg}};width:{{s.pct}}%"></div></div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="background:#fff;border:1px solid #D7D8DD;border-radius:12px;padding:14px">
+                <div style="font-size:13px;font-weight:600;color:#101116;margin-bottom:14px">Expense trend</div>
+                <div style="display:flex;align-items:flex-end;gap:14px;height:90px">
+                  <sc-for list="{{monthTrend}}" as="m" hint-placeholder-count="4">
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%">
+                      <div style="font-size:10px;color:#A4A7B0;margin-bottom:4px;font-family:'Roboto Mono',monospace">{{m.shortAmount}}</div>
+                      <div style="width:100%;border-radius:5px 5px 0 0;background:{{m.barColor}};height:{{m.pct}}%"></div>
+                      <div style="font-size:11px;color:#4E566C;margin-top:6px">{{m.label}}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{tabIsAccount}}" hint-placeholder-val="{{false}}">
+
+            <sc-if value="{{isAccountRoot}}" hint-placeholder-val="{{true}}">
+              <div style="padding:8px 20px 110px">
+                <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px">
+                  <div style="width:52px;height:52px;border-radius:999px;background:#E3E8FC;color:#2A4CC5;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px">P</div>
+                  <div>
+                    <div style="font-size:17px;font-weight:700;color:#101116">Prannoy</div>
+                    <div style="font-size:13px;color:#4E566C">prannoy@gmail.com</div>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+                  <button onClick="{{openSubGroups}}" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #D7D8DD;border-radius:12px;padding:12px 14px;text-align:left;cursor:pointer">
+                    <div style="width:34px;height:34px;border-radius:9px;background:#F1F4FE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2A4CC5" stroke-width="1.6"><path d="M12 2l9 5-9 5-9-5 9-5zM3 12l9 5 9-5M3 17l9 5 9-5"/></svg>
+                    </div>
+                    <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#101116">Recurring groups</div></div>
+                    <div style="font-size:12px;color:#A4A7B0">{{groupsSummary}}</div>
+                    <svg width="7" height="13" viewBox="0 0 7 13" fill="none"><path d="M1 1L6 6.5 1 12" stroke="#A4A7B0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <button onClick="{{openSubAccounts}}" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #D7D8DD;border-radius:12px;padding:12px 14px;text-align:left;cursor:pointer">
+                    <div style="width:34px;height:34px;border-radius:9px;background:#F1F4FE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2A4CC5" stroke-width="1.6"><path d="M3 6l9 6 9-6M3 6h18v12H3z"/></svg>
+                    </div>
+                    <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#101116">Connected accounts</div></div>
+                    <div style="font-size:12px;color:#A4A7B0">{{accountsSummary}}</div>
+                    <svg width="7" height="13" viewBox="0 0 7 13" fill="none"><path d="M1 1L6 6.5 1 12" stroke="#A4A7B0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <button onClick="{{openSubCategories}}" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #D7D8DD;border-radius:12px;padding:12px 14px;text-align:left;cursor:pointer">
+                    <div style="width:34px;height:34px;border-radius:9px;background:#F1F4FE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2A4CC5" stroke-width="1.6"><path d="M20.59 13.41L11 4H4v7l9.59 9.59a2 2 0 0 0 2.82 0l4.18-4.18a2 2 0 0 0 0-2.82z"/><circle cx="7.5" cy="7.5" r="1"/></svg>
+                    </div>
+                    <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#101116">Categories</div></div>
+                    <div style="font-size:12px;color:#A4A7B0">{{categoriesSummary}}</div>
+                    <svg width="7" height="13" viewBox="0 0 7 13" fill="none"><path d="M1 1L6 6.5 1 12" stroke="#A4A7B0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <button onClick="{{openSubExport}}" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #D7D8DD;border-radius:12px;padding:12px 14px;text-align:left;cursor:pointer">
+                    <div style="width:34px;height:34px;border-radius:9px;background:#F1F4FE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2A4CC5" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+                    </div>
+                    <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#101116">Export</div></div>
+                    <div style="font-size:12px;color:#A4A7B0">CSV</div>
+                    <svg width="7" height="13" viewBox="0 0 7 13" fill="none"><path d="M1 1L6 6.5 1 12" stroke="#A4A7B0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <button onClick="{{openSubNotifications}}" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #D7D8DD;border-radius:12px;padding:12px 14px;text-align:left;cursor:pointer">
+                    <div style="width:34px;height:34px;border-radius:9px;background:#F1F4FE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2A4CC5" stroke-width="1.6"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+                    </div>
+                    <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#101116">Notifications</div></div>
+                    <div style="font-size:12px;color:#A4A7B0">{{notifSummary}}</div>
+                    <svg width="7" height="13" viewBox="0 0 7 13" fill="none"><path d="M1 1L6 6.5 1 12" stroke="#A4A7B0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                </div>
+                <button onClick="{{signOut}}" style="width:100%;height:44px;border-radius:10px;background:#fff;border:1px solid #D7D8DD;color:#BF1D30;font-weight:600;font-size:14px;cursor:pointer">Sign out</button>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{isSubGroups}}" hint-placeholder-val="{{false}}">
+              <div style="padding:8px 20px 110px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+                  <button onClick="{{closeSub}}" style="width:34px;height:34px;border-radius:999px;border:1px solid #D7D8DD;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer">
+                    <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M7 1L1.5 6.5 7 12" stroke="#101116" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <div style="font-size:18px;font-weight:700;color:#101116">Recurring groups</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <sc-for list="{{groupsView}}" as="g" hint-placeholder-count="4">
+                    <button onClick="{{g.open}}" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #D7D8DD;border-radius:12px;padding:12px 14px;text-align:left;cursor:pointer">
+                      <div style="width:10px;height:10px;border-radius:999px;flex-shrink:0;background:{{g.color.fg}}"></div>
+                      <div style="flex:1">
+                        <div style="font-size:14px;font-weight:600;color:#101116">{{g.name}}</div>
+                        <div style="font-size:12px;color:#A4A7B0;margin-top:2px">{{g.typeLabel}} · Recurring</div>
+                      </div>
+                      <div style="font-family:'Roboto Mono',monospace;font-weight:600;font-size:13px;color:#4E566C">{{g.totalFmt}}</div>
+                      <svg width="7" height="13" viewBox="0 0 7 13" fill="none"><path d="M1 1L6 6.5 1 12" stroke="#A4A7B0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                  </sc-for>
+                  <button onClick="{{openNewGroupSheet}}" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#F1F4FE;border:1px dashed #BECFF6;border-radius:12px;padding:12px;color:#2A4CC5;font-weight:600;font-size:13px;cursor:pointer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2A4CC5" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                    New group
+                  </button>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{isGroupDetail}}" hint-placeholder-val="{{false}}">
+              <div style="padding:8px 20px 110px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+                  <button onClick="{{closeGroupDetail}}" style="width:34px;height:34px;border-radius:999px;border:1px solid #D7D8DD;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer">
+                    <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M7 1L1.5 6.5 7 12" stroke="#101116" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <div style="width:10px;height:10px;border-radius:999px;background:{{selGroup.color.fg}}"></div>
+                    <div style="font-size:17px;font-weight:700;color:#101116">{{selGroup.name}}</div>
+                  </div>
+                </div>
+                <div style="display:flex;gap:6px;margin-bottom:18px">
+                  <div style="padding:3px 9px;border-radius:999px;font-size:11px;font-weight:600;background:{{selGroup.typeBg}};color:{{selGroup.typeFg}}">{{selGroup.typeLabel}}</div>
+                  <div style="padding:3px 9px;border-radius:999px;font-size:11px;font-weight:600;background:#F1F4FE;color:#2A4CC5">Recurring</div>
+                </div>
+                <div style="background:#F1F4FE;border-radius:12px;padding:14px 16px;margin-bottom:20px">
+                  <div style="font-size:12px;color:#2A4CC5">Total across all months</div>
+                  <div style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:20px;color:#0D1F6E;margin-top:4px">{{selGroup.totalFmt}}</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <sc-for list="{{selGroup.items}}" as="t" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #D7D8DD;border-radius:12px;padding:12px 14px">
+                      <div style="flex:1;min-width:0">
+                        <div style="font-size:14px;color:#101116;font-weight:500">{{t.description}}</div>
+                        <div style="font-size:12px;color:#A4A7B0;margin-top:2px">{{t.monthLabel}} · {{t.dayLabel}}</div>
+                      </div>
+                      <div style="font-family:'Roboto Mono',monospace;font-weight:600;font-size:14px;color:#101116">{{t.amountFmt}}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{isSubAccounts}}" hint-placeholder-val="{{false}}">
+              <div style="padding:8px 20px 110px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+                  <button onClick="{{closeSub}}" style="width:34px;height:34px;border-radius:999px;border:1px solid #D7D8DD;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer">
+                    <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M7 1L1.5 6.5 7 12" stroke="#101116" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <div style="font-size:18px;font-weight:700;color:#101116">Connected accounts</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <sc-for list="{{connectedAccountsView}}" as="a" hint-placeholder-count="2">
+                    <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #D7D8DD;border-radius:12px;padding:12px 14px">
+                      <div style="width:34px;height:34px;border-radius:9px;background:#F1F4FE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2A4CC5" stroke-width="1.6"><path d="M3 6l9 6 9-6M3 6h18v12H3z"/></svg>
+                      </div>
+                      <div style="flex:1;min-width:0">
+                        <div style="font-size:13px;color:#101116;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{a.email}}</div>
+                      </div>
+                      <div style="padding:3px 9px;border-radius:999px;font-size:11px;font-weight:600;background:{{a.statusBg}};color:{{a.statusFg}}">{{a.status}}</div>
+                    </div>
+                  </sc-for>
+                  <button onClick="{{addConnectedAccount}}" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#F1F4FE;border:1px dashed #BECFF6;border-radius:12px;padding:12px;color:#2A4CC5;font-weight:600;font-size:13px;cursor:pointer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2A4CC5" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                    Add Google account
+                  </button>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{isSubCategories}}" hint-placeholder-val="{{false}}">
+              <div style="padding:8px 20px 110px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+                  <button onClick="{{closeSub}}" style="width:34px;height:34px;border-radius:999px;border:1px solid #D7D8DD;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer">
+                    <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M7 1L1.5 6.5 7 12" stroke="#101116" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <div style="font-size:18px;font-weight:700;color:#101116">Categories</div>
+                </div>
+                <div style="display:flex;background:#EDEFF3;border-radius:999px;padding:3px;gap:2px;margin-bottom:12px">
+                  <button onClick="{{setCatTabExpense}}" style="{{catTabExpenseStyle}}">Expense</button>
+                  <button onClick="{{setCatTabCredit}}" style="{{catTabCreditStyle}}">Credit</button>
+                  <button onClick="{{setCatTabInvestment}}" style="{{catTabInvestmentStyle}}">Investment</button>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+                  <sc-for list="{{categoryChips}}" as="c" hint-placeholder-count="6">
+                    <div style="padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;background:{{c.bg}};color:{{c.fg}}">{{c.name}}</div>
+                  </sc-for>
+                </div>
+                <div style="display:flex;gap:8px">
+                  <input value="{{newCategoryInput}}" onChange="{{onNewCategoryInput}}" placeholder="Add a category" style="flex:1;height:38px;border-radius:8px;border:1px solid #D7D8DD;padding:0 12px;font-size:13px;outline:none" />
+                  <button onClick="{{addCategory}}" style="width:38px;height:38px;border-radius:8px;background:#4869EC;border:none;color:#fff;font-size:18px;line-height:1;cursor:pointer">+</button>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{isSubExport}}" hint-placeholder-val="{{false}}">
+              <div style="padding:8px 20px 110px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+                  <button onClick="{{closeSub}}" style="width:34px;height:34px;border-radius:999px;border:1px solid #D7D8DD;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer">
+                    <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M7 1L1.5 6.5 7 12" stroke="#101116" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <div style="font-size:18px;font-weight:700;color:#101116">Export</div>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+                  <sc-for list="{{exportRangesView}}" as="r" hint-placeholder-count="8">
+                    <button onClick="{{r.select}}" style="{{r.style}}">{{r.label}}</button>
+                  </sc-for>
+                </div>
+                <sc-if value="{{isCustomRange}}" hint-placeholder-val="{{false}}">
+                  <div style="display:flex;gap:8px;margin-bottom:12px">
+                    <input type="date" value="{{exportCustomFrom}}" onChange="{{onExportFromChange}}" style="flex:1;height:38px;border-radius:8px;border:1px solid #D7D8DD;padding:0 10px;font-size:13px;outline:none" />
+                    <input type="date" value="{{exportCustomTo}}" onChange="{{onExportToChange}}" style="flex:1;height:38px;border-radius:8px;border:1px solid #D7D8DD;padding:0 10px;font-size:13px;outline:none" />
+                  </div>
+                </sc-if>
+                <div style="font-size:12px;color:#A4A7B0;margin-bottom:10px">{{exportPreview.count}} transactions · {{exportPreview.totalFmt}}</div>
+                <button onClick="{{runExport}}" style="width:100%;height:44px;border-radius:10px;background:#4869EC;color:#fff;border:none;font-weight:600;font-size:14px;cursor:pointer">Export CSV</button>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{isSubNotifications}}" hint-placeholder-val="{{false}}">
+              <div style="padding:8px 20px 110px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+                  <button onClick="{{closeSub}}" style="width:34px;height:34px;border-radius:999px;border:1px solid #D7D8DD;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer">
+                    <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M7 1L1.5 6.5 7 12" stroke="#101116" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <div style="font-size:18px;font-weight:700;color:#101116">Notifications</div>
+                </div>
+                <div style="background:#fff;border:1px solid #D7D8DD;border-radius:12px">
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:1px solid #F0F1F3">
+                    <div style="font-size:14px;color:#101116">New transaction detected</div>
+                    <button onClick="{{toggleNotifTxn}}" style="{{notifTxnStyle}}"><div style="{{notifTxnKnobStyle}}"></div></button>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px">
+                    <div style="font-size:14px;color:#101116">Budget threshold alert</div>
+                    <button onClick="{{toggleNotifBudget}}" style="{{notifBudgetStyle}}"><div style="{{notifBudgetKnobStyle}}"></div></button>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+          </sc-if>
+
+        </div>
+
+        <sc-if value="{{showFab}}" hint-placeholder-val="{{false}}">
+          <button onClick="{{openAddSheetBlank}}" style="position:absolute;right:20px;bottom:88px;width:56px;height:56px;border-radius:999px;background:#4869EC;color:#fff;border:none;box-shadow:0 10px 28px rgba(72,105,236,0.4);font-size:26px;line-height:1;cursor:pointer;z-index:20">+</button>
+        </sc-if>
+
+        <sc-if value="{{bulkBarVisible}}" hint-placeholder-val="{{false}}">
+          <div style="position:absolute;left:16px;right:16px;bottom:88px;background:#101116;border-radius:14px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 10px 28px rgba(16,17,22,0.3);z-index:25">
+            <div style="color:#fff;font-size:13px;font-weight:600">{{bulkBarCount}} selected</div>
+            <button onClick="{{bulkBarDelete}}" style="background:#BF1D30;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer">Delete</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{confirmDelete}}" hint-placeholder-val="{{false}}">
+          <div style="position:absolute;inset:0;background:rgba(16,17,22,0.45);z-index:30" onClick="{{cancelDelete}}"></div>
+          <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;box-shadow:0 -10px 28px rgba(117,133,160,0.25);z-index:40;padding:20px 20px 28px">
+            <div style="font-size:17px;font-weight:700;color:#101116;margin-bottom:10px">Delete {{confirmDelete.count}} transaction{{confirmDelete.plural}}?</div>
+            <div style="font-size:13px;color:#4E566C;margin-bottom:20px;line-height:1.5">This removes {{confirmDelete.count}} transaction{{confirmDelete.plural}} totaling {{confirmDelete.totalFmt}}. This can't be undone.</div>
+            <div style="display:flex;gap:10px">
+              <button onClick="{{cancelDelete}}" style="flex:1;height:46px;border-radius:10px;background:#fff;border:1px solid #D7D8DD;color:#101116;font-weight:600;font-size:14px;cursor:pointer">Cancel</button>
+              <button onClick="{{performDelete}}" style="flex:1;height:46px;border-radius:10px;background:#BF1D30;border:none;color:#fff;font-weight:600;font-size:14px;cursor:pointer">Delete</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;border-top:1px solid #D7D8DD;background:#fff;padding:8px 0 22px;z-index:20">
+          <button onClick="{{goHome}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;color:{{navHomeColor}}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>
+            <span style="font-size:10px;font-weight:500">Home</span>
+          </button>
+          <button onClick="{{goIgnored}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;color:{{navIgnoredColor}}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+            <span style="font-size:10px;font-weight:500">Ignored</span>
+          </button>
+          <button onClick="{{goInsights}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;color:{{navInsightsColor}}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg>
+            <span style="font-size:10px;font-weight:500">Insights</span>
+          </button>
+          <button onClick="{{goAccount}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;color:{{navAccountColor}}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
+            <span style="font-size:10px;font-weight:500">Account</span>
+          </button>
+        </div>
+
+        <sc-if value="{{showAddSheet}}" hint-placeholder-val="{{false}}">
+          <div style="position:absolute;inset:0;background:rgba(16,17,22,0.45);z-index:30" onClick="{{closeAddSheet}}"></div>
+          <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;box-shadow:0 -10px 28px rgba(117,133,160,0.25);z-index:40;max-height:82%;overflow:auto;padding:18px 20px 28px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+              <div style="font-size:17px;font-weight:700;color:#101116">{{addSheetTitle}}</div>
+              <button onClick="{{closeAddSheet}}" style="width:30px;height:30px;border-radius:999px;background:#EDEFF3;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4E566C" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </div>
+            <div style="font-size:12px;color:#A4A7B0;margin-bottom:14px">Adding to {{addForm.monthLabel}}</div>
+
+            <div style="font-size:12px;font-weight:600;color:#4E566C;margin-bottom:8px">Type</div>
+            <div style="display:flex;background:#EDEFF3;border-radius:999px;padding:3px;gap:2px;margin-bottom:16px">
+              <button onClick="{{setAddTypeExpense}}" style="{{addTypeExpenseStyle}}">Expense</button>
+              <button onClick="{{setAddTypeCredit}}" style="{{addTypeCreditStyle}}">Credit</button>
+              <button onClick="{{setAddTypeInvestment}}" style="{{addTypeInvestmentStyle}}">Investment</button>
+            </div>
+
+            <div style="font-size:12px;font-weight:600;color:#4E566C;margin-bottom:8px">Category</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+              <sc-for list="{{addCategoryChips}}" as="c" hint-placeholder-count="6">
+                <button onClick="{{c.select}}" style="{{c.style}}">{{c.name}}</button>
+              </sc-for>
+            </div>
+
+            <div style="font-size:12px;font-weight:600;color:#4E566C;margin-bottom:8px">Description</div>
+            <input value="{{addForm.description}}" onChange="{{onAddDescriptionChange}}" placeholder="e.g. Dinner at Toit" style="width:100%;height:44px;border-radius:10px;border:1px solid #D7D8DD;padding:0 14px;font-size:14px;outline:none;margin-bottom:16px" />
+
+            <div style="font-size:12px;font-weight:600;color:#4E566C;margin-bottom:8px">Amount</div>
+            <div style="display:flex;align-items:center;border:1px solid #D7D8DD;border-radius:10px;padding:0 14px;margin-bottom:16px">
+              <span style="color:#4E566C;font-family:'Roboto Mono',monospace;margin-right:6px">₹</span>
+              <input value="{{addForm.amount}}" onChange="{{onAddAmountChange}}" placeholder="0" inputmode="decimal" style="flex:1;height:44px;border:none;font-size:14px;outline:none;font-family:'Roboto Mono',monospace" />
+            </div>
+
+            <div style="font-size:12px;font-weight:600;color:#4E566C;margin-bottom:8px">Assign to group</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px">
+              <sc-for list="{{addGroupChips}}" as="g" hint-placeholder-count="2">
+                <button onClick="{{g.select}}" style="{{g.style}}">{{g.name}}</button>
+              </sc-for>
+            </div>
+
+            <button onClick="{{saveAddTransaction}}" disabled="{{!canSaveAdd}}" style="{{saveAddBtnStyle}}">Save transaction</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{showNewGroupSheet}}" hint-placeholder-val="{{false}}">
+          <div style="position:absolute;inset:0;background:rgba(16,17,22,0.45);z-index:30" onClick="{{closeNewGroupSheet}}"></div>
+          <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;box-shadow:0 -10px 28px rgba(117,133,160,0.25);z-index:40;padding:18px 20px 28px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+              <div style="font-size:17px;font-weight:700;color:#101116">New recurring group</div>
+              <button onClick="{{closeNewGroupSheet}}" style="width:30px;height:30px;border-radius:999px;background:#EDEFF3;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4E566C" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </div>
+            <div style="font-size:12px;font-weight:600;color:#4E566C;margin-bottom:8px">Name</div>
+            <input value="{{newGroupForm.name}}" onChange="{{onNewGroupNameChange}}" placeholder="e.g. Date Nights" style="width:100%;height:44px;border-radius:10px;border:1px solid #D7D8DD;padding:0 14px;font-size:14px;outline:none;margin-bottom:16px" />
+            <div style="font-size:12px;font-weight:600;color:#4E566C;margin-bottom:8px">Type</div>
+            <div style="display:flex;background:#EDEFF3;border-radius:999px;padding:3px;gap:2px;margin-bottom:16px">
+              <button onClick="{{setNewGroupTypeExpense}}" style="{{newGroupTypeExpenseStyle}}">Expense</button>
+              <button onClick="{{setNewGroupTypeCredit}}" style="{{newGroupTypeCreditStyle}}">Credit</button>
+              <button onClick="{{setNewGroupTypeInvestment}}" style="{{newGroupTypeInvestmentStyle}}">Investment</button>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px">
+              <div style="font-size:14px;color:#101116">Recurring</div>
+              <button onClick="{{toggleNewGroupRecurring}}" style="{{newGroupRecurringStyle}}"><div style="{{newGroupRecurringKnobStyle}}"></div></button>
+            </div>
+            <button onClick="{{saveNewGroup}}" disabled="{{!canSaveGroup}}" style="{{saveGroupBtnStyle}}">Create group</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+          <div style="position:absolute;left:50%;bottom:96px;transform:translateX(-50%);background:#101116;color:#fff;padding:10px 18px;border-radius:999px;font-size:13px;font-weight:500;z-index:50;white-space:nowrap;animation:toastIn 0.2s ease-out">{{toast}}</div>
+        </sc-if>
+
+      </div>
+    </sc-if>
+
+  </div>
+</x-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  CATS = {
+    expense: ['Food','Transport','Shopping','Bills','Travel','Entertainment','Health','Other'],
+    credit: ['Salary','Freelance','Interest','Refund','Cashback','Other'],
+    investment: ['SIP / Mutual Fund','Stocks','Fixed Deposit','PPF','Other'],
+  };
+  CAT_COLORS = {
+    Food:{bg:'#CCE8D5',fg:'#0E4B24'}, Transport:{bg:'#DCEEFA',fg:'#0B4A7A'}, Shopping:{bg:'#F2DEF2',fg:'#5E1E5E'},
+    Bills:{bg:'#FDE6D1',fg:'#7A3A05'}, Travel:{bg:'#DAE5FF',fg:'#142C7A'}, Entertainment:{bg:'#F2DCFA',fg:'#58127A'},
+    Health:{bg:'#D6F1EC',fg:'#0A5A4E'}, Other:{bg:'#E2E2E2',fg:'#221F1F'},
+    Salary:{bg:'#CCE8D5',fg:'#0E4B24'}, Freelance:{bg:'#DCEEFA',fg:'#0B4A7A'}, Interest:{bg:'#D0F0E6',fg:'#0E5A43'},
+    Refund:{bg:'#FFE6E8',fg:'#8E0A18'}, Cashback:{bg:'#E4EFD1',fg:'#3C5A09'},
+    'SIP / Mutual Fund':{bg:'#DAE5FF',fg:'#142C7A'}, Stocks:{bg:'#F2DCFA',fg:'#58127A'}, 'Fixed Deposit':{bg:'#FDE6D1',fg:'#7A3A05'}, PPF:{bg:'#D6F1EC',fg:'#0A5A4E'},
+  };
+  TYPE_META = {
+    expense:{label:'Expense', accent:'#BF1D30', bg:'#FBEAEB'},
+    credit:{label:'Credit', accent:'#037C5A', bg:'#E3F7EB'},
+    investment:{label:'Investment', accent:'#5C25F7', bg:'#F2DCFA'},
+  };
+  MONTHS_META = [
+    {id:'2026-04', label:'April 2026', short:'Apr 2026', abbr:'Apr', num:3},
+    {id:'2026-05', label:'May 2026', short:'May 2026', abbr:'May', num:4},
+    {id:'2026-06', label:'June 2026', short:'Jun 2026', abbr:'Jun', num:5},
+    {id:'2026-07', label:'July 2026', short:'Jul 2026', abbr:'Jul', num:6},
+  ];
+  GROUPS_SEED = [
+    {id:'g-rent', name:'Rent', type:'expense', recurring:true, catRef:'Bills'},
+    {id:'g-date', name:'Date Nights', type:'expense', recurring:true, catRef:'Entertainment'},
+    {id:'g-salary', name:'Salary', type:'credit', recurring:true, catRef:'Salary'},
+    {id:'g-sip', name:'SIP - Index Fund', type:'investment', recurring:true, catRef:'SIP / Mutual Fund'},
+  ];
+  RAW_MONTHS = [
+    { expenses:[
+        {category:'Bills',description:'Monthly rent',amount:24500,day:1,groupId:'g-rent'},
+        {category:'Entertainment',description:'Dinner + movie',amount:1600,day:6,groupId:'g-date'},
+        {category:'Food',description:'Groceries',amount:2900,day:3,groupId:null},
+        {category:'Transport',description:'Cab rides',amount:720,day:8,groupId:null},
+        {category:'Bills',description:'Electricity bill',amount:1950,day:10,groupId:null},
+        {category:'Shopping',description:'Flipkart order',amount:1120,day:14,groupId:null},
+        {category:'Entertainment',description:'Spotify subscription',amount:199,day:2,groupId:null},
+        {category:'Health',description:'Gym membership',amount:1500,day:5,groupId:null},
+      ],
+      credits:[
+        {category:'Salary',description:'April salary',amount:92000,day:1,groupId:'g-salary'},
+        {category:'Cashback',description:'Card cashback',amount:150,day:12,groupId:null},
+      ],
+      investments:[
+        {category:'SIP / Mutual Fund',description:'Monthly SIP - Index fund',amount:10000,day:5,groupId:'g-sip'},
+        {category:'Stocks',description:'Bought TCS shares',amount:3000,day:20,groupId:null},
+      ],
+    },
+    { expenses:[
+        {category:'Bills',description:'Monthly rent',amount:24500,day:1,groupId:'g-rent'},
+        {category:'Entertainment',description:'Dinner at home',amount:2000,day:9,groupId:'g-date'},
+        {category:'Entertainment',description:'Movie night',amount:1400,day:23,groupId:'g-date'},
+        {category:'Food',description:'Groceries',amount:3400,day:4,groupId:null},
+        {category:'Transport',description:'Fuel',amount:1800,day:11,groupId:null},
+        {category:'Bills',description:'Electricity bill',amount:2050,day:10,groupId:null},
+        {category:'Shopping',description:'Amazon order',amount:2650,day:16,groupId:null},
+        {category:'Entertainment',description:'Netflix subscription',amount:649,day:2,groupId:null},
+        {category:'Health',description:'Doctor visit',amount:900,day:18,groupId:null},
+        {category:'Travel',description:'Weekend trip - Lonavala',amount:6500,day:25,groupId:null},
+      ],
+      credits:[
+        {category:'Salary',description:'May salary',amount:92000,day:1,groupId:'g-salary'},
+        {category:'Freelance',description:'Logo design project',amount:8000,day:15,groupId:null},
+      ],
+      investments:[
+        {category:'SIP / Mutual Fund',description:'Monthly SIP - Index fund',amount:10000,day:5,groupId:'g-sip'},
+        {category:'Fixed Deposit',description:'Mutual fund lumpsum',amount:5000,day:28,groupId:null},
+      ],
+    },
+    { expenses:[
+        {category:'Bills',description:'Monthly rent',amount:25000,day:1,groupId:'g-rent'},
+        {category:'Entertainment',description:'Dinner + movie',amount:1900,day:14,groupId:'g-date'},
+        {category:'Food',description:'Groceries',amount:3100,day:6,groupId:null},
+        {category:'Transport',description:'Metro + cabs',amount:950,day:9,groupId:null},
+        {category:'Bills',description:'Electricity bill',amount:2200,day:10,groupId:null},
+        {category:'Shopping',description:'Myntra order',amount:1780,day:19,groupId:null},
+        {category:'Entertainment',description:'Netflix subscription',amount:649,day:2,groupId:null},
+        {category:'Health',description:'Health checkup',amount:2400,day:22,groupId:null},
+        {category:'Travel',description:'Flight to Bangalore',amount:5200,day:27,groupId:null},
+      ],
+      credits:[
+        {category:'Salary',description:'June salary',amount:93500,day:1,groupId:'g-salary'},
+        {category:'Interest',description:'Savings account interest',amount:210,day:30,groupId:null},
+      ],
+      investments:[
+        {category:'SIP / Mutual Fund',description:'Monthly SIP - Index fund',amount:10000,day:5,groupId:'g-sip'},
+        {category:'Stocks',description:'Bought HDFC Bank shares',amount:4000,day:17,groupId:null},
+      ],
+    },
+    { expenses:[
+        {category:'Bills',description:'Monthly rent',amount:25000,day:1,groupId:'g-rent'},
+        {category:'Entertainment',description:'Dinner at Toit',amount:1800,day:5,groupId:'g-date'},
+        {category:'Entertainment',description:'Movie + dinner',amount:2200,day:19,groupId:'g-date'},
+        {category:'Food',description:'Groceries',amount:3200,day:8,groupId:null},
+        {category:'Transport',description:'Uber rides',amount:850,day:12,groupId:null},
+        {category:'Bills',description:'Electricity bill',amount:2100,day:10,groupId:null},
+        {category:'Shopping',description:'Amazon order',amount:1450,day:15,groupId:null},
+        {category:'Entertainment',description:'Netflix subscription',amount:649,day:2,groupId:null},
+        {category:'Health',description:'Gym membership',amount:1500,day:3,groupId:null},
+        {category:'Travel',description:'Flight to Goa',amount:8200,day:24,groupId:null},
+      ],
+      credits:[
+        {category:'Salary',description:'July salary',amount:95000,day:1,groupId:'g-salary'},
+        {category:'Freelance',description:'Design project payment',amount:12000,day:18,groupId:null},
+        {category:'Cashback',description:'Card cashback',amount:320,day:22,groupId:null},
+      ],
+      investments:[
+        {category:'SIP / Mutual Fund',description:'Monthly SIP - Index fund',amount:10000,day:5,groupId:'g-sip'},
+        {category:'Stocks',description:'Bought RELIANCE shares',amount:5000,day:20,groupId:null},
+      ],
+    },
+  ];
+  IGNORED_SEED = [
+    {id:'ig1', type:'expense', category:'Food', description:'Swiggy order', amount:540, day:24, groupId:null},
+    {id:'ig2', type:'expense', category:'Transport', description:'Ola cab ride', amount:310, day:25, groupId:null},
+    {id:'ig3', type:'expense', category:'Shopping', description:'Amazon purchase', amount:1290, day:25, groupId:null},
+    {id:'ig4', type:'credit', category:'Refund', description:'Zomato refund', amount:199, day:26, groupId:null},
+  ];
+  ACCOUNTS_SEED = [
+    {email:'prannoy@gmail.com', status:'Connected', type:'Gmail'},
+    {email:'prannoy.work@gmail.com', status:'Syncing', type:'Gmail'},
+  ];
+  TODAY = new Date(2026, 6, 26);
+  otpRefs = [];
+
+  buildMonths() {
+    const withIds = (arr, t, monthId) => arr.map((tx, idx) => ({ ...tx, type: t, id: `${monthId}-${t}-${idx}` }));
+    return this.MONTHS_META.map((meta, i) => {
+      const raw = this.RAW_MONTHS[i];
+      return {
+        ...meta,
+        expenses: withIds(raw.expenses, 'expense', meta.id),
+        credits: withIds(raw.credits, 'credit', meta.id),
+        investments: withIds(raw.investments, 'investment', meta.id),
+      };
+    });
+  }
+
+  state = {
+    screen: 'login',
+    otp: ['', '', '', '', '', ''],
+    tab: 'home',
+    homeSub: null,
+    showAddSheet: false,
+    addForm: { type: 'expense', category: '', description: '', amount: '', groupId: null, fromIgnoredId: null, monthIndex: 3 },
+    months: this.buildMonths(),
+    ignored: this.IGNORED_SEED.slice(),
+    ignoredSearch: '',
+    ignoredSelected: {},
+    confirmDelete: null,
+    groups: this.GROUPS_SEED.slice(),
+    categories: { expense: this.CATS.expense.slice(), credit: this.CATS.credit.slice(), investment: this.CATS.investment.slice() },
+    connectedAccounts: this.ACCOUNTS_SEED.slice(),
+    notifications: { newTxn: true, budgetAlert: false },
+    accountSub: null,
+    selectedGroupId: null,
+    categoriesTab: 'expense',
+    newCategoryInput: '',
+    showNewGroupSheet: false,
+    newGroupForm: { name: '', type: 'expense', recurring: true },
+    exportRange: 'thisMonth',
+    exportCustomFrom: '',
+    exportCustomTo: '',
+    toast: null,
+  };
+
+  fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+  catColor(name) { return this.CAT_COLORS[name] || { bg: '#E2E2E2', fg: '#221F1F' }; }
+  groupName(id) { if (!id) return 'Miscellaneous'; const g = this.state.groups.find(x => x.id === id); return g ? g.name : 'Miscellaneous'; }
+
+  monthTotals(month) {
+    const sum = arr => arr.reduce((a, t) => a + t.amount, 0);
+    const expenses = sum(month.expenses), credits = sum(month.credits), investments = sum(month.investments);
+    return { expenses, credits, investments, savings: credits - expenses - investments, ec: month.expenses.length, cc: month.credits.length, ic: month.investments.length };
+  }
+
+  flattenAll() {
+    const out = [];
+    this.state.months.forEach(m => {
+      ['expenses', 'credits', 'investments'].forEach(key => {
+        m[key].forEach(t => out.push({ ...t, monthLabel: m.short, monthAbbr: m.abbr, monthNum: m.num, date: new Date(2026, m.num, t.day) }));
+      });
+    });
+    return out;
+  }
+
+  switchTab(tab) { this.setState({ tab, homeSub: null, accountSub: null }); }
+  openMonth(idx) { this.setState({ homeSub: { monthIndex: idx, viewMode: 'list', expanded: {}, search: '', selected: {} } }); }
+  toggleRowSelected(id) { this.setState(s => ({ homeSub: { ...s.homeSub, selected: { ...s.homeSub.selected, [id]: !s.homeSub.selected[id] } } })); }
+  toggleIgnoredSelected(id) { this.setState(s => ({ ignoredSelected: { ...s.ignoredSelected, [id]: !s.ignoredSelected[id] } })); }
+  cancelDelete() { this.setState({ confirmDelete: null }); }
+  requestDeleteMonth() {
+    const ids = Object.keys(this.state.homeSub.selected).filter(id => this.state.homeSub.selected[id]);
+    if (!ids.length) return;
+    const mi = this.state.homeSub.monthIndex;
+    const rows = this.getMonthRows(mi, '').filter(t => ids.includes(t.id));
+    const total = rows.reduce((a, t) => a + t.amount, 0);
+    this.setState({ confirmDelete: { scope: 'month', ids, count: ids.length, totalFmt: this.fmt(total) } });
+  }
+  requestDeleteIgnored() {
+    const ids = Object.keys(this.state.ignoredSelected).filter(id => this.state.ignoredSelected[id]);
+    if (!ids.length) return;
+    const total = this.state.ignored.filter(it => ids.includes(it.id)).reduce((a, t) => a + t.amount, 0);
+    this.setState({ confirmDelete: { scope: 'ignored', ids, count: ids.length, totalFmt: this.fmt(total) } });
+  }
+  performDelete() {
+    const cd = this.state.confirmDelete;
+    if (!cd) return;
+    if (cd.scope === 'month') {
+      const mi = this.state.homeSub.monthIndex;
+      this.setState(s => {
+        const months = [...s.months];
+        const m = { ...months[mi] };
+        ['expenses', 'credits', 'investments'].forEach(key => { m[key] = m[key].filter(t => !cd.ids.includes(t.id)); });
+        months[mi] = m;
+        return { months, homeSub: { ...s.homeSub, selected: {} }, confirmDelete: null, toast: `Deleted ${cd.count} transaction${cd.count > 1 ? 's' : ''}.` };
+      });
+    } else {
+      this.setState(s => ({ ignored: s.ignored.filter(it => !cd.ids.includes(it.id)), ignoredSelected: {}, confirmDelete: null, toast: `Deleted ${cd.count} item${cd.count > 1 ? 's' : ''}.` }));
+    }
+    this._toast();
+  }
+  closeBucketDetail() { this.setState({ homeSub: null }); }
+  setDetailViewMode(mode) { this.setState(s => ({ homeSub: { ...s.homeSub, viewMode: mode } })); }
+  setDetailSearch(v) { this.setState(s => ({ homeSub: { ...s.homeSub, search: v } })); }
+  toggleGroupExpand(key) { this.setState(s => ({ homeSub: { ...s.homeSub, expanded: { ...s.homeSub.expanded, [key]: !s.homeSub.expanded[key] } } })); }
+
+  updateTransaction(monthIndex, type, id, field, value) {
+    this.setState(s => {
+      const months = [...s.months];
+      const m = { ...months[monthIndex] };
+      const key = type + 's';
+      m[key] = m[key].map(t => {
+        if (t.id !== id) return t;
+        if (field === 'amount') return { ...t, amount: parseFloat(value) || 0 };
+        if (field === 'day') { const d = parseInt(value) || t.day; return { ...t, day: Math.min(31, Math.max(1, d)) }; }
+        if (field === 'groupId') return { ...t, groupId: value === '' ? null : value };
+        return { ...t, [field]: value };
+      });
+      months[monthIndex] = m;
+      return { months };
+    });
+  }
+
+  updateIgnored(id, field, value) {
+    this.setState(s => ({
+      ignored: s.ignored.map(it => {
+        if (it.id !== id) return it;
+        if (field === 'amount') return { ...it, amount: parseFloat(value) || 0 };
+        if (field === 'day') { const d = parseInt(value) || it.day; return { ...it, day: Math.min(31, Math.max(1, d)) }; }
+        if (field === 'groupId') return { ...it, groupId: value === '' ? null : value };
+        return { ...it, [field]: value };
+      }),
+    }));
+  }
+
+  openAddSheet(prefill) {
+    const defaultMonthIndex = this.state.homeSub ? this.state.homeSub.monthIndex : this.state.months.length - 1;
+    this.setState({ showAddSheet: true, addForm: prefill || { type: 'expense', category: '', description: '', amount: '', groupId: null, fromIgnoredId: null, monthIndex: defaultMonthIndex } });
+  }
+  closeAddSheet() { this.setState({ showAddSheet: false }); }
+  setAddType(type) { this.setState(s => ({ addForm: { ...s.addForm, type, category: '', groupId: null } })); }
+  setAddField(field, val) { this.setState(s => ({ addForm: { ...s.addForm, [field]: val } })); }
+
+  saveAddTransaction() {
+    this.setState(s => {
+      const key = s.addForm.type + 's';
+      const newTx = { id: 'custom-' + Date.now(), type: s.addForm.type, category: s.addForm.category, description: s.addForm.description.trim(), amount: parseFloat(s.addForm.amount) || 0, day: this.TODAY.getDate(), groupId: s.addForm.groupId };
+      const months = [...s.months];
+      const mi = s.addForm.monthIndex;
+      const m = { ...months[mi] };
+      m[key] = [...m[key], newTx];
+      months[mi] = m;
+      const ignored = s.addForm.fromIgnoredId ? s.ignored.filter(x => x.id !== s.addForm.fromIgnoredId) : s.ignored;
+      return { months, ignored, showAddSheet: false, toast: 'Transaction saved.' };
+    });
+    this._toast();
+  }
+  _toast() { clearTimeout(this._t); this._t = setTimeout(() => this.setState({ toast: null }), 2200); }
+  showToast(msg) { this.setState({ toast: msg }); this._toast(); }
+
+  confirmIgnored(item) {
+    const monthIndex = this.state.months.length - 1;
+    this.openAddSheet({ type: item.type, category: item.category, description: item.description, amount: String(item.amount), groupId: item.groupId || null, fromIgnoredId: item.id, monthIndex });
+  }
+  discardIgnored(id) { this.setState(s => ({ ignored: s.ignored.filter(x => x.id !== id) })); }
+
+  setAccountSub(sub) { this.setState({ accountSub: sub }); }
+  openGroupDetail(id) { this.setState({ accountSub: 'groupDetail', selectedGroupId: id }); }
+  closeGroupDetail() { this.setState({ accountSub: 'groups', selectedGroupId: null }); }
+  openNewGroupSheet() { this.setState({ showNewGroupSheet: true, newGroupForm: { name: '', type: 'expense', recurring: true } }); }
+  closeNewGroupSheet() { this.setState({ showNewGroupSheet: false }); }
+  setNewGroupField(field, val) { this.setState(s => ({ newGroupForm: { ...s.newGroupForm, [field]: val } })); }
+  saveNewGroup() {
+    this.setState(s => {
+      const id = 'g-custom-' + Date.now();
+      const g = { id, name: s.newGroupForm.name.trim(), type: s.newGroupForm.type, recurring: s.newGroupForm.recurring, catRef: null };
+      return { groups: [...s.groups, g], showNewGroupSheet: false, toast: 'Group created.' };
+    });
+    this._toast();
+  }
+
+  addConnectedAccount() {
+    this.setState(s => ({ connectedAccounts: [...s.connectedAccounts, { email: `new.account${s.connectedAccounts.length + 1}@gmail.com`, status: 'Connected', type: 'Gmail' }], toast: 'Account connected.' }));
+    this._toast();
+  }
+
+  setCategoriesTab(t) { this.setState({ categoriesTab: t }); }
+  addCategory() {
+    this.setState(s => {
+      const val = s.newCategoryInput.trim();
+      if (!val) return null;
+      const categories = { ...s.categories };
+      categories[s.categoriesTab] = [...categories[s.categoriesTab], val];
+      return { categories, newCategoryInput: '' };
+    });
+  }
+
+  toggleNotif(key) { this.setState(s => ({ notifications: { ...s.notifications, [key]: !s.notifications[key] } })); }
+  setExportRange(key) { this.setState({ exportRange: key }); }
+
+  filteredForExport() {
+    const flat = this.flattenAll();
+    const range = this.state.exportRange;
+    const diffDays = d => Math.floor((this.TODAY - d) / 86400000);
+    if (range === 'thisMonth') return flat.filter(t => t.monthNum === 6);
+    if (range === 'lastMonth') return flat.filter(t => t.monthNum === 5);
+    if (range === 'thisWeek') return flat.filter(t => { const d = diffDays(t.date); return d >= 0 && d <= 6; });
+    if (range === 'lastWeek') return flat.filter(t => { const d = diffDays(t.date); return d >= 7 && d <= 13; });
+    if (range === 'last3') return flat.filter(t => [4, 5, 6].includes(t.monthNum));
+    if (range === 'last6') return flat;
+    if (range === 'lastYear') return flat;
+    if (range === 'custom') {
+      const from = this.state.exportCustomFrom ? new Date(this.state.exportCustomFrom) : null;
+      const to = this.state.exportCustomTo ? new Date(this.state.exportCustomTo) : null;
+      return flat.filter(t => (!from || t.date >= from) && (!to || t.date <= to));
+    }
+    return flat;
+  }
+
+  runExport() {
+    const rows = this.filteredForExport();
+    const header = 'Date,Type,Category,Description,Group,Amount';
+    const lines = rows.map(r => {
+      const dateStr = r.date.toISOString().slice(0, 10);
+      return [dateStr, r.type, r.category, '"' + r.description.replace(/"/g, '""') + '"', this.groupName(r.groupId), r.amount].join(',');
+    });
+    const csv = [header, ...lines].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'tally-export.csv'; a.click();
+    URL.revokeObjectURL(url);
+    this.showToast(`Exported ${rows.length} transactions.`);
+  }
+
+  signOut() { this.setState({ screen: 'login', tab: 'home', homeSub: null, accountSub: null, showAddSheet: false, showNewGroupSheet: false }); }
+
+  computeMonthGroupsView(monthIndex, expandedMap) {
+    const month = this.state.months[monthIndex];
+    const all = [
+      ...month.expenses.map(t => ({ ...t })),
+      ...month.credits.map(t => ({ ...t })),
+      ...month.investments.map(t => ({ ...t })),
+    ];
+    const buckets = {};
+    all.forEach(t => {
+      const key = t.type + '|' + t.category;
+      if (!buckets[key]) buckets[key] = { key, name: t.category, type: t.type, color: this.catColor(t.category), total: 0, count: 0, items: [] };
+      buckets[key].total += t.amount; buckets[key].count++; buckets[key].items.push(t);
+    });
+    return Object.values(buckets).sort((a, b) => b.total - a.total).map(b => ({
+      ...b, totalFmt: this.fmt(b.total), typeLabel: this.TYPE_META[b.type].label, amountColor: this.TYPE_META[b.type].accent,
+      expanded: !!(expandedMap && expandedMap[b.key]),
+      toggle: () => this.toggleGroupExpand(b.key),
+      chevronStyle: `transform:rotate(${expandedMap && expandedMap[b.key] ? 180 : 0}deg)`,
+      items: b.items.slice().sort((a, c) => c.day - a.day).map(t => ({ ...t, dayLabel: `${String(t.day).padStart(2, '0')} ${month.abbr}`, amountFmt: this.fmt(t.amount) })),
+    }));
+  }
+
+  getMonthRows(monthIndex, search) {
+    const month = this.state.months[monthIndex];
+    const combined = [
+      ...month.expenses.map(t => ({ ...t })),
+      ...month.credits.map(t => ({ ...t })),
+      ...month.investments.map(t => ({ ...t })),
+    ];
+    const q = (search || '').trim().toLowerCase();
+    const filtered = q ? combined.filter(t => t.description.toLowerCase().includes(q) || t.category.toLowerCase().includes(q) || this.groupName(t.groupId).toLowerCase().includes(q)) : combined;
+    return filtered.sort((a, b) => b.day - a.day);
+  }
+
+  renderVals() {
+    const s = this.state;
+    const isLogin = s.screen === 'login', isOtp = s.screen === 'otp', isMain = s.screen === 'main';
+    const otpInputs = s.otp.map((v, i) => ({
+      value: v,
+      setRef: (el) => { this.otpRefs[i] = el; },
+      onChange: (e) => {
+        const val = e.target.value.replace(/[^0-9]/g, '').slice(-1);
+        const otp = [...this.state.otp]; otp[i] = val; this.setState({ otp });
+        if (val && i < 5) setTimeout(() => this.otpRefs[i + 1] && this.otpRefs[i + 1].focus(), 0);
+      },
+      onKeyDown: (e) => { if (e.key === 'Backspace' && !this.state.otp[i] && i > 0) { this.otpRefs[i - 1] && this.otpRefs[i - 1].focus(); } },
+    }));
+    const canVerify = s.otp.every(d => d !== '');
+    const verifyBtnStyle = `width:100%;height:50px;border-radius:12px;border:none;font-weight:600;font-size:15px;margin-top:36px;cursor:pointer;background:${canVerify ? '#4869EC' : '#E3E8FC'};color:${canVerify ? '#fff' : '#A4A7B0'}`;
+
+    const latestMonthIndex = s.months.length - 1;
+    const latestMonth = s.months[latestMonthIndex];
+
+    const showHomeSummary = isMain && s.tab === 'home' && !s.homeSub;
+    const showHomeDetail = isMain && s.tab === 'home' && !!s.homeSub;
+    const tabIsIgnored = isMain && s.tab === 'ignored';
+    const tabIsInsights = isMain && s.tab === 'insights';
+    const tabIsAccount = isMain && s.tab === 'account';
+
+    const monthCards = s.months.map((m, i) => {
+      const t = this.monthTotals(m);
+      return { idx: i, label: m.label, isCurrent: i === latestMonthIndex, open: () => this.openMonth(i), expensesFmt: this.fmt(t.expenses), creditsFmt: this.fmt(t.credits), investmentsFmt: this.fmt(t.investments), savingsFmt: this.fmt(t.savings) };
+    }).slice().reverse();
+
+    let detail = null, isViewList = true, isViewGroups = false;
+    if (showHomeDetail) {
+      const mi = s.homeSub.monthIndex;
+      const month = s.months[mi];
+      isViewList = s.homeSub.viewMode === 'list'; isViewGroups = !isViewList;
+      const filteredRows = this.getMonthRows(mi, s.homeSub.search);
+      const rows = filteredRows.map(t => ({
+        id: t.id, type: t.type,
+        rowSelected: !!s.homeSub.selected[t.id], onToggleSelect: () => this.toggleRowSelected(t.id),
+        descValue: t.description, onDescChange: (e) => this.updateTransaction(mi, t.type, t.id, 'description', e.target.value),
+        groupValue: t.groupId || '', onGroupChange: (e) => this.updateTransaction(mi, t.type, t.id, 'groupId', e.target.value),
+        groupOptions: [{ value: '', label: 'Miscellaneous' }, ...s.groups.filter(g => g.type === t.type).map(g => ({ value: g.id, label: g.name }))],
+        amountValue: t.amount, onAmountChange: (e) => this.updateTransaction(mi, t.type, t.id, 'amount', e.target.value),
+        amountColor: this.TYPE_META[t.type].accent,
+        dayValue: t.day, onDayChange: (e) => this.updateTransaction(mi, t.type, t.id, 'day', e.target.value),
+      }));
+      const sub = { expenses: 0, credits: 0, investments: 0 };
+      filteredRows.forEach(t => { sub[t.type + 's'] += t.amount; });
+      const subtotal = { expensesFmt: this.fmt(sub.expenses), creditsFmt: this.fmt(sub.credits), investmentsFmt: this.fmt(sub.investments), savingsFmt: this.fmt(sub.credits - sub.expenses - sub.investments) };
+      const groups = this.computeMonthGroupsView(mi, s.homeSub.expanded);
+      const selectedCount = Object.values(s.homeSub.selected).filter(Boolean).length;
+      detail = { monthLabel: month.label, rows, groups, subtotal, search: s.homeSub.search, searchPlaceholder: `Search ${month.short}`, selectedCount, hasSelection: selectedCount > 0 };
+    }
+    const pillBtn = (active) => `flex:1;height:30px;border-radius:999px;border:none;font-size:12px;font-weight:600;cursor:pointer;background:${active ? '#fff' : 'none'};color:${active ? '#101116' : '#7585A0'};box-shadow:${active ? '0 1px 3px rgba(117,133,160,0.25)' : 'none'}`;
+
+    const ignoredMatchesSearch = (it) => {
+      const q = s.ignoredSearch.trim().toLowerCase();
+      if (!q) return true;
+      return it.description.toLowerCase().includes(q) || it.category.toLowerCase().includes(q) || this.groupName(it.groupId).toLowerCase().includes(q);
+    };
+    const ignoredFiltered = s.ignored.filter(ignoredMatchesSearch);
+    const ignoredList = ignoredFiltered.map(it => ({
+      id: it.id,
+      rowSelected: !!s.ignoredSelected[it.id], onToggleSelect: () => this.toggleIgnoredSelected(it.id),
+      descValue: it.description, onDescChange: (e) => this.updateIgnored(it.id, 'description', e.target.value),
+      groupValue: it.groupId || '', onGroupChange: (e) => this.updateIgnored(it.id, 'groupId', e.target.value),
+      groupOptions: [{ value: '', label: 'Miscellaneous' }, ...s.groups.filter(g => g.type === it.type).map(g => ({ value: g.id, label: g.name }))],
+      amountValue: it.amount, onAmountChange: (e) => this.updateIgnored(it.id, 'amount', e.target.value),
+      amountColor: this.TYPE_META[it.type].accent,
+      dayValue: it.day, onDayChange: (e) => this.updateIgnored(it.id, 'day', e.target.value),
+      confirm: () => this.confirmIgnored(it), discard: () => this.discardIgnored(it.id),
+    }));
+    const ignoredSub = { expenses: 0, credits: 0, investments: 0 };
+    ignoredFiltered.forEach(it => { ignoredSub[it.type + 's'] += it.amount; });
+    const ignoredSubtotal = { expensesFmt: this.fmt(ignoredSub.expenses), creditsFmt: this.fmt(ignoredSub.credits), investmentsFmt: this.fmt(ignoredSub.investments), savingsFmt: this.fmt(ignoredSub.credits - ignoredSub.expenses - ignoredSub.investments) };
+    const ignoredSelectedCount = Object.values(s.ignoredSelected).filter(Boolean).length;
+
+    const groupsView = s.groups.map(g => {
+      const total = this.flattenAll().filter(t => t.groupId === g.id).reduce((a, t) => a + t.amount, 0);
+      return { ...g, color: this.catColor(g.catRef || 'Other'), typeLabel: this.TYPE_META[g.type].label, totalFmt: this.fmt(total), open: () => this.openGroupDetail(g.id) };
+    });
+
+    const isAccountRoot = tabIsAccount && !s.accountSub;
+    const isSubGroups = tabIsAccount && s.accountSub === 'groups';
+    const isGroupDetail = tabIsAccount && s.accountSub === 'groupDetail';
+    const isSubAccounts = tabIsAccount && s.accountSub === 'accounts';
+    const isSubCategories = tabIsAccount && s.accountSub === 'categories';
+    const isSubExport = tabIsAccount && s.accountSub === 'export';
+    const isSubNotifications = tabIsAccount && s.accountSub === 'notifications';
+
+    let selGroup = null;
+    if (isGroupDetail) {
+      const g = s.groups.find(x => x.id === s.selectedGroupId);
+      if (g) {
+        const items = this.flattenAll().filter(t => t.groupId === g.id).sort((a, b) => b.date - a.date).map(t => ({ ...t, dayLabel: `${String(t.day).padStart(2, '0')} ${t.monthAbbr}`, amountFmt: this.fmt(t.amount) }));
+        const total = items.reduce((a, t) => a + t.amount, 0);
+        const tm = this.TYPE_META[g.type];
+        selGroup = { ...g, color: this.catColor(g.catRef || 'Other'), typeLabel: tm.label, typeBg: tm.bg, typeFg: tm.accent, totalFmt: this.fmt(total), items };
+      }
+    }
+
+    const connectedAccountsView = s.connectedAccounts.map(a => ({ ...a, statusBg: a.status === 'Connected' ? '#E3F7EB' : '#FFF4CF', statusFg: a.status === 'Connected' ? '#037C5A' : '#9A5B00' }));
+    const catTabStyle = (tab) => pillBtn(s.categoriesTab === tab);
+    const categoryChips = s.categories[s.categoriesTab].map(name => { const c = this.catColor(name); return { name, ...c }; });
+
+    const totalCategoriesCount = s.categories.expense.length + s.categories.credit.length + s.categories.investment.length;
+    const notifOnCount = (s.notifications.newTxn ? 1 : 0) + (s.notifications.budgetAlert ? 1 : 0);
+    const groupsSummary = `${s.groups.length} groups`, accountsSummary = `${s.connectedAccounts.length} connected`, categoriesSummary = `${totalCategoriesCount} total`, notifSummary = `${notifOnCount}/2 on`;
+
+    const exportLabels = { custom: 'Custom range', thisMonth: 'Current month', lastMonth: 'Last month', thisWeek: 'Current week', lastWeek: 'Last week', last3: 'Last 3 months', last6: 'Last 6 months', lastYear: 'Last year' };
+    const exportRangesView = Object.keys(exportLabels).map(key => ({
+      key, label: exportLabels[key], select: () => this.setExportRange(key),
+      style: `padding:8px 14px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid ${s.exportRange === key ? '#4869EC' : '#D7D8DD'};background:${s.exportRange === key ? '#E3E8FC' : '#fff'};color:${s.exportRange === key ? '#2A4CC5' : '#4E566C'}`,
+    }));
+    const isCustomRange = s.exportRange === 'custom';
+    const exportRows = this.filteredForExport();
+    const exportPreview = { count: exportRows.length, totalFmt: this.fmt(exportRows.reduce((a, t) => a + t.amount, 0)) };
+
+    const catSpendMap = {};
+    latestMonth.expenses.forEach(t => { catSpendMap[t.category] = (catSpendMap[t.category] || 0) + t.amount; });
+    const maxCat = Math.max(1, ...Object.values(catSpendMap));
+    const categorySpend = Object.entries(catSpendMap).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([category, amount]) => { const c = this.catColor(category); return { category, amount, amountFmt: this.fmt(amount), pct: Math.round((amount / maxCat) * 100), fg: c.fg }; });
+
+    const trendVals = s.months.map(m => this.monthTotals(m).expenses);
+    const maxTrend = Math.max(1, ...trendVals);
+    const monthTrend = s.months.map((m, i) => ({ label: m.abbr, shortAmount: '₹' + Math.round(trendVals[i] / 1000) + 'k', pct: Math.max(6, Math.round((trendVals[i] / maxTrend) * 100)), barColor: i === latestMonthIndex ? '#4869EC' : '#BECFF6' }));
+
+    const toggleStyle = (on) => `width:44px;height:26px;border-radius:999px;border:none;padding:2px;cursor:pointer;background:${on ? '#4869EC' : '#D7D8DD'};display:flex;justify-content:${on ? 'flex-end' : 'flex-start'}`;
+    const knobStyle = `width:20px;height:20px;border-radius:999px;background:#fff`;
+
+    const addForm = s.addForm;
+    const addFormMonth = s.months[addForm.monthIndex] || latestMonth;
+    const canSaveAdd = !!addForm.category && addForm.description.trim().length > 0 && parseFloat(addForm.amount) > 0;
+    const chipStyle = (active) => `padding:8px 14px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid ${active ? '#4869EC' : '#D7D8DD'};background:${active ? '#E3E8FC' : '#fff'};color:${active ? '#2A4CC5' : '#4E566C'}`;
+    const addCategoryChips = s.categories[addForm.type].map(name => ({ name, select: () => this.setAddField('category', name), style: chipStyle(addForm.category === name) }));
+    const matchingGroups = s.groups.filter(g => g.type === addForm.type);
+    const addGroupChips = [{ id: null, name: 'Miscellaneous' }, ...matchingGroups].map(g => ({ name: g.name, select: () => this.setAddField('groupId', g.id), style: chipStyle(addForm.groupId === g.id) }));
+    const addSheetTitle = addForm.fromIgnoredId ? 'Confirm transaction' : 'Add transaction';
+    const saveAddBtnStyle = `width:100%;height:48px;border-radius:12px;border:none;font-weight:600;font-size:15px;cursor:pointer;background:${canSaveAdd ? '#4869EC' : '#E3E8FC'};color:${canSaveAdd ? '#fff' : '#A4A7B0'}`;
+
+    const newGroupForm = s.newGroupForm;
+    const canSaveGroup = newGroupForm.name.trim().length > 0;
+    const saveGroupBtnStyle = `width:100%;height:48px;border-radius:12px;border:none;font-weight:600;font-size:15px;cursor:pointer;background:${canSaveGroup ? '#4869EC' : '#E3E8FC'};color:${canSaveGroup ? '#fff' : '#A4A7B0'}`;
+
+    const navColor = (tab) => s.tab === tab && isMain ? '#4869EC' : '#A4A7B0';
+    const detailHasSelection = !!(detail && detail.hasSelection);
+    const showFab = isMain && s.tab === 'home' && !s.showAddSheet && !s.showNewGroupSheet && !detailHasSelection;
+    const bulkBarVisible = (showHomeDetail && detailHasSelection) || (tabIsIgnored && ignoredSelectedCount > 0);
+    const bulkBarCount = showHomeDetail ? (detail ? detail.selectedCount : 0) : ignoredSelectedCount;
+    const bulkBarDelete = showHomeDetail ? () => this.requestDeleteMonth() : () => this.requestDeleteIgnored();
+    const cd = s.confirmDelete;
+    const confirmDeleteView = cd ? { count: cd.count, plural: cd.count > 1 ? 's' : '', totalFmt: cd.totalFmt } : null;
+
+    return {
+      isLogin, isOtp, isMain, isDarkScreen: isLogin || isOtp,
+      loginGoogle: () => this.setState({ screen: 'main' }),
+      loginPhone: () => { this.setState({ screen: 'otp', otp: ['', '', '', '', '', ''] }); setTimeout(() => this.otpRefs[0] && this.otpRefs[0].focus(), 60); },
+      backToLogin: () => this.setState({ screen: 'login' }),
+      otpPhoneDisplay: '+91 98765 43210', otpInputs, canVerify, verifyBtnStyle,
+      verifyOtp: () => this.setState({ screen: 'main' }),
+      resendOtp: () => this.showToast('Code resent.'),
+
+      showHomeSummary, showHomeDetail, tabIsIgnored, tabIsInsights, tabIsAccount,
+      monthCards,
+      closeDetail: () => this.closeBucketDetail(),
+      detail, isViewList, isViewGroups,
+      onDetailSearchChange: (e) => this.setDetailSearch(e.target.value),
+      setViewList: () => this.setDetailViewMode('list'), setViewGroups: () => this.setDetailViewMode('groups'),
+      listToggleStyle: pillBtn(isViewList), groupsToggleStyle: pillBtn(isViewGroups),
+
+      ignoredList, ignoredEmpty: s.ignored.length === 0, ignoredHasItems: ignoredList.length > 0,
+      ignoredSearch: s.ignoredSearch, onIgnoredSearchChange: (e) => this.setState({ ignoredSearch: e.target.value }),
+      ignoredSubtotal,
+      bulkBarVisible, bulkBarCount, bulkBarDelete,
+      confirmDelete: confirmDeleteView, cancelDelete: () => this.cancelDelete(), performDelete: () => this.performDelete(),
+
+      latestMonth, categorySpend, monthTrend,
+
+      isAccountRoot, isSubGroups, isGroupDetail, isSubAccounts, isSubCategories, isSubExport, isSubNotifications,
+      groupsSummary, accountsSummary, categoriesSummary, notifSummary,
+      openSubGroups: () => this.setAccountSub('groups'), openSubAccounts: () => this.setAccountSub('accounts'), openSubCategories: () => this.setAccountSub('categories'), openSubExport: () => this.setAccountSub('export'), openSubNotifications: () => this.setAccountSub('notifications'),
+      closeSub: () => this.setAccountSub(null),
+      selGroup, closeGroupDetail: () => this.closeGroupDetail(),
+      groupsView, openNewGroupSheet: () => this.openNewGroupSheet(),
+      connectedAccountsView, addConnectedAccount: () => this.addConnectedAccount(),
+      setCatTabExpense: () => this.setCategoriesTab('expense'), setCatTabCredit: () => this.setCategoriesTab('credit'), setCatTabInvestment: () => this.setCategoriesTab('investment'),
+      catTabExpenseStyle: catTabStyle('expense'), catTabCreditStyle: catTabStyle('credit'), catTabInvestmentStyle: catTabStyle('investment'),
+      categoryChips, newCategoryInput: s.newCategoryInput, onNewCategoryInput: (e) => this.setState({ newCategoryInput: e.target.value }), addCategory: () => this.addCategory(),
+      exportRangesView, isCustomRange, exportCustomFrom: s.exportCustomFrom, exportCustomTo: s.exportCustomTo,
+      onExportFromChange: (e) => this.setState({ exportCustomFrom: e.target.value }), onExportToChange: (e) => this.setState({ exportCustomTo: e.target.value }),
+      exportPreview, runExport: () => this.runExport(),
+      notifTxnStyle: toggleStyle(s.notifications.newTxn), notifTxnKnobStyle: knobStyle, toggleNotifTxn: () => this.toggleNotif('newTxn'),
+      notifBudgetStyle: toggleStyle(s.notifications.budgetAlert), notifBudgetKnobStyle: knobStyle, toggleNotifBudget: () => this.toggleNotif('budgetAlert'),
+      signOut: () => this.signOut(),
+
+      showFab, openAddSheetBlank: () => this.openAddSheet(null),
+      goHome: () => this.switchTab('home'), goIgnored: () => this.switchTab('ignored'), goInsights: () => this.switchTab('insights'), goAccount: () => this.switchTab('account'),
+      navHomeColor: navColor('home'), navIgnoredColor: navColor('ignored'), navInsightsColor: navColor('insights'), navAccountColor: navColor('account'),
+
+      showAddSheet: s.showAddSheet, closeAddSheet: () => this.closeAddSheet(), addForm: { ...addForm, monthLabel: addFormMonth.label }, addSheetTitle,
+      setAddTypeExpense: () => this.setAddType('expense'), setAddTypeCredit: () => this.setAddType('credit'), setAddTypeInvestment: () => this.setAddType('investment'),
+      addTypeExpenseStyle: pillBtn(addForm.type === 'expense'), addTypeCreditStyle: pillBtn(addForm.type === 'credit'), addTypeInvestmentStyle: pillBtn(addForm.type === 'investment'),
+      addCategoryChips, onAddDescriptionChange: (e) => this.setAddField('description', e.target.value), onAddAmountChange: (e) => this.setAddField('amount', e.target.value),
+      addGroupChips, canSaveAdd, saveAddBtnStyle, saveAddTransaction: () => this.saveAddTransaction(),
+
+      showNewGroupSheet: s.showNewGroupSheet, closeNewGroupSheet: () => this.closeNewGroupSheet(), newGroupForm,
+      onNewGroupNameChange: (e) => this.setNewGroupField('name', e.target.value),
+      setNewGroupTypeExpense: () => this.setNewGroupField('type', 'expense'), setNewGroupTypeCredit: () => this.setNewGroupField('type', 'credit'), setNewGroupTypeInvestment: () => this.setNewGroupField('type', 'investment'),
+      newGroupTypeExpenseStyle: pillBtn(newGroupForm.type === 'expense'), newGroupTypeCreditStyle: pillBtn(newGroupForm.type === 'credit'), newGroupTypeInvestmentStyle: pillBtn(newGroupForm.type === 'investment'),
+      toggleNewGroupRecurring: () => this.setNewGroupField('recurring', !newGroupForm.recurring),
+      newGroupRecurringStyle: toggleStyle(newGroupForm.recurring), newGroupRecurringKnobStyle: knobStyle,
+      canSaveGroup, saveGroupBtnStyle, saveNewGroup: () => this.saveNewGroup(),
+
+      toast: s.toast,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
