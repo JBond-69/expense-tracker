@@ -38,7 +38,9 @@ struct AddExpenseView: View {
                     source: "manual",
                     isExpense: true,
                     reasonIfNotExpense: nil,
-                    createdAt: ISO8601DateFormatter().string(from: Date())
+                    createdAt: ISO8601DateFormatter().string(from: Date()),
+                    type: .expense,
+                    groupId: nil
                 )
                 expenseManager.addExpense(expense, userID: authManager.userId) { success in
                     if success { dismiss() }

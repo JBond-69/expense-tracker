@@ -52,7 +52,9 @@ struct EditExpenseView: View {
                     source: expense.source,
                     isExpense: expense.isExpense,
                     reasonIfNotExpense: expense.reasonIfNotExpense,
-                    createdAt: expense.createdAt
+                    createdAt: expense.createdAt,
+                    type: expense.type,
+                    groupId: expense.groupId
                 )
                 expenseManager.updateExpense(updated, userID: authManager.userId) { success in
                     if success { dismiss() }
