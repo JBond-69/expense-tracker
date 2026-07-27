@@ -24,7 +24,9 @@ struct MainTabView: View {
                     Label("Ignored", systemImage: "tray.fill")
                 }
 
-            StubTabView(title: "Insights", systemImage: "chart.bar.fill", message: "More views coming soon.")
+            InsightsView()
+                .environmentObject(expenseManager)
+                .environmentObject(authManager)
                 .tabItem {
                     Label("Insights", systemImage: "chart.bar.fill")
                 }
