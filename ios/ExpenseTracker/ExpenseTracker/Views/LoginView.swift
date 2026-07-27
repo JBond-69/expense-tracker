@@ -5,6 +5,13 @@ struct LoginView: View {
     @State private var email = ""
     @State private var showOTPView = false
     @FocusState private var emailFocused: Bool
+    @State private var googleSignInError: String?
+    @State private var isGoogleSigningIn = false
+    // @State, not a plain `let` — LoginView is reinitialized whenever authManager's
+    // @Published properties change (isLoading flips right as this flow starts), which
+    // would otherwise deallocate the in-flight ASWebAuthenticationSession mid-flow and
+    // surface as an instant WebAuthenticationSession error Code=1 (canceled).
+    @State private var googleSignInManager = GoogleSignInManager()
 
     var body: some View {
         NavigationStack {
@@ -92,6 +99,36 @@ struct LoginView: View {
                                 .foregroundColor(.red)
                         }
 
+                        HStack {
+                            Rectangle().fill(Color.white.opacity(0.2)).frame(height: 1)
+                            Text("or").font(Theme.Font.ui(12)).foregroundColor(.white.opacity(0.5))
+                            Rectangle().fill(Color.white.opacity(0.2)).frame(height: 1)
+                        }
+                        .padding(.vertical, 4)
+
+                        Button(action: signInWithGoogle) {
+                            Group {
+                                if isGoogleSigningIn {
+                                    ProgressView().tint(Theme.textPrimary)
+                                } else {
+                                    Text("Sign in with Google")
+                                        .font(Theme.Font.ui(15, weight: .semibold))
+                                        .foregroundColor(Theme.textPrimary)
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 52)
+                            .background(Color.white)
+                            .cornerRadius(12)
+                        }
+                        .disabled(isGoogleSigningIn)
+
+                        if let googleSignInError {
+                            Text(googleSignInError)
+                                .font(Theme.Font.ui(12))
+                                .foregroundColor(.red)
+                        }
+
                         Text("By continuing you agree to the Terms & Privacy Policy")
                             .font(Theme.Font.ui(11))
                             .foregroundColor(.white.opacity(0.35))
@@ -112,6 +149,26 @@ struct LoginView: View {
             }
             .navigationDestination(isPresented: $showOTPView) {
                 OTPView(email: email)
+            }
+        }
+    }
+
+    private func signInWithGoogle() {
+        googleSignInError = nil
+        isGoogleSigningIn = true
+        googleSignInManager.signInWithSupabase(supabaseURL: authManager.supabaseURL, supabaseKey: authManager.supabaseKey) { result in
+            isGoogleSigningIn = false
+            switch result {
+            case .success(let session):
+                authManager.applyGoogleSession(
+                    accessToken: session.accessToken,
+                    refreshToken: session.refreshToken,
+                    expiresIn: session.expiresIn,
+                    email: session.email,
+                    userId: session.userId
+                )
+            case .failure(let error):
+                googleSignInError = "Google sign-in failed: \(error.localizedDescription)"
             }
         }
     }

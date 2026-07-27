@@ -127,6 +127,14 @@ class AuthManager: NSObject, ObservableObject {
         }.resume()
     }
 
+    /// Entry point for the Google OAuth login path — same session shape as OTP,
+    /// so the rest of the app (Home, Insights, etc.) needs no changes.
+    func applyGoogleSession(accessToken: String, refreshToken: String?, expiresIn: Double?, email: String, userId: String) {
+        isLoading = false
+        errorMessage = nil
+        applySession(accessToken: accessToken, refreshToken: refreshToken, expiresIn: expiresIn, email: email, userId: userId)
+    }
+
     private func applySession(accessToken: String, refreshToken: String?, expiresIn: Double?, email: String, userId: String) {
         self.accessToken = accessToken
         self.refreshToken = refreshToken

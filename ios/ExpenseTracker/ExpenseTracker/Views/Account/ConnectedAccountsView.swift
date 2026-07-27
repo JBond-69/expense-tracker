@@ -3,12 +3,16 @@ import SwiftUI
 /// Connected accounts list (design/mockups/Expense Tracker.dc.html line
 /// 408-434), backed by CRUD against `connected_accounts`.
 ///
-/// DEVIATION FROM MOCKUP: "Add Google account" does not run real Gmail
-/// OAuth — that's Phase 3 (docs/PROJECT_CONTEXT.md roadmap). It opens a
-/// manual-entry sheet that says so explicitly and just inserts a row with
-/// the email you type, status "connected". Status can be changed via a
-/// context menu (long-press a row) and a row can be removed with its trash
-/// button, so all four CRUD operations are exercised against the real table.
+/// "Add Google account" runs real Gmail OAuth client-side (PKCE via
+/// GoogleSignInManager) and records the resulting email with status
+/// "connected". Token exchange happening on-device rather than in a Phase 3
+/// Edge Function is a deliberate early step, not the end state — the access
+/// token itself is discarded once we have the email, nothing is persisted
+/// or used to read mail yet. A manual-entry fallback remains below it for
+/// testing without going through the consent screen. Status can be changed
+/// via a context menu (long-press a row) and a row can be removed with its
+/// trash button, so all four CRUD operations are exercised against the real
+/// table.
 struct ConnectedAccountsView: View {
     @ObservedObject var connectedAccountManager: ConnectedAccountManager
     @EnvironmentObject var authManager: AuthManager
@@ -120,6 +124,11 @@ private struct AddConnectedAccountSheet: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var email = ""
+    @State private var googleSignInError: String?
+    // @State, not a plain `let` — this view is reinitialized whenever authManager's
+    // @Published properties change, which would otherwise deallocate an in-flight
+    // ASWebAuthenticationSession mid-flow (see LoginView for the failure this causes).
+    @State private var googleSignInManager = GoogleSignInManager()
 
     private var canSave: Bool {
         email.contains("@") && email.contains(".")
@@ -143,11 +152,35 @@ private struct AddConnectedAccountSheet: View {
             }
             .padding(.bottom, 12)
 
-            // This is the explicit stub called out in the brief — no OAuth
-            // consent screen exists yet, this just writes a row.
-            Text("Manual entry stub — real Gmail OAuth is planned for Phase 3. This just records an email/status row; nothing is actually connected to Gmail.")
+            Button(action: signInWithGoogle) {
+                Group {
+                    if connectedAccountManager.isLoading {
+                        ProgressView().tint(.white)
+                    } else {
+                        Text("Sign in with Google")
+                            .font(Theme.Font.ui(15, weight: .semibold))
+                            .foregroundColor(.white)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: 48)
+                .background(Theme.primary)
+                .cornerRadius(Theme.controlRadius)
+            }
+            .disabled(connectedAccountManager.isLoading)
+            .padding(.bottom, 8)
+
+            if let googleSignInError {
+                Text(googleSignInError)
+                    .font(Theme.Font.ui(12))
+                    .foregroundColor(.red)
+                    .padding(.bottom, 8)
+            }
+
+            Text("or add a row manually (test-only fallback — no real Gmail connection):")
                 .font(Theme.Font.ui(12))
                 .foregroundColor(Theme.textSecondary)
+                .padding(.top, 8)
                 .padding(.bottom, 16)
 
             Text("Email")
@@ -196,6 +229,20 @@ private struct AddConnectedAccountSheet: View {
     private func save() {
         connectedAccountManager.addAccount(email: email.trimmingCharacters(in: .whitespaces), provider: "gmail", status: "connected", userID: authManager.userId) { success in
             if success { dismiss() }
+        }
+    }
+
+    private func signInWithGoogle() {
+        googleSignInError = nil
+        googleSignInManager.signIn { result in
+            switch result {
+            case .success(let account):
+                connectedAccountManager.addAccount(email: account.email, provider: "gmail", status: "connected", userID: authManager.userId) { success in
+                    if success { dismiss() }
+                }
+            case .failure(let error):
+                googleSignInError = "Google sign-in failed: \(error.localizedDescription)"
+            }
         }
     }
 }
