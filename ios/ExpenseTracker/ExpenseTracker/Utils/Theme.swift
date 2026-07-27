@@ -92,6 +92,10 @@ extension TransactionType {
         case .investment: return Theme.investmentBg
         }
     }
+
+    /// Same pair as (accentColor, tintBg), as a tuple — used by the Account
+    /// tab's recurring-group and category-tab badges.
+    var tint: (fg: Color, bg: Color) { (accentColor, tintBg) }
 }
 
 /// Matches the mockup's `fmt(n)` helper (Roboto Mono, en-IN grouping, no
