@@ -44,17 +44,26 @@ struct LoginView: View {
                     Spacer()
 
                     VStack(spacing: 16) {
-                        TextField("Email", text: $email)
-                            .keyboardType(.emailAddress)
-                            .textInputAutocapitalization(.never)
-                            .autocorrectionDisabled()
-                            .focused($emailFocused)
-                            .frame(maxWidth: .infinity)
-                            .padding(.horizontal, 16)
-                            .frame(height: 52)
-                            .background(Color.white)
-                            .cornerRadius(12)
-                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(emailFocused ? Theme.primary : .clear, lineWidth: 2))
+                        // Wrapping the tap-to-focus gesture around the TextField, rather
+                        // than attaching it to the TextField itself, is required — SwiftUI's
+                        // own editing gesture on the control silently swallows a same-view
+                        // .onTapGesture without ever engaging (confirmed empirically: an
+                        // identical gesture one level up in the tree fires reliably).
+                        ZStack {
+                            TextField("Email", text: $email)
+                                .keyboardType(.emailAddress)
+                                .textInputAutocapitalization(.never)
+                                .autocorrectionDisabled()
+                                .focused($emailFocused)
+                                .padding(.horizontal, 16)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(Color.white)
+                        .cornerRadius(12)
+                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(emailFocused ? Theme.primary : .clear, lineWidth: 2))
+                        .contentShape(Rectangle())
+                        .onTapGesture { emailFocused = true }
 
                         Button(action: {
                             authManager.signUpWithOTP(email: email)
