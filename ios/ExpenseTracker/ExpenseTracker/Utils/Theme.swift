@@ -17,6 +17,10 @@ enum Theme {
 
     static let expenseFg = Color(hex: "#BF1D30")
     static let expenseBg = Color(hex: "#FBEAEB")
+    static let creditFg = Color(hex: "#037C5A")
+    static let creditBg = Color(hex: "#E3F7EB")
+    static let investmentFg = Color(hex: "#5C25F7")
+    static let investmentBg = Color(hex: "#F2DCFA")
 
     static let loginBackground = Color(hex: "#07133E")
 
@@ -64,6 +68,19 @@ extension ExpenseCategory {
         case .entertainment: return "film.fill"
         case .health: return "cross.case.fill"
         case .other: return "ellipsis.circle.fill"
+        }
+    }
+}
+
+extension TransactionType {
+    /// Foreground/background tint pair per the mockup's TYPE_META (design/
+    /// mockups/Expense Tracker.dc.html line 649-653) — used for type badges
+    /// on recurring groups and category tabs.
+    var tint: (fg: Color, bg: Color) {
+        switch self {
+        case .expense: return (Theme.expenseFg, Theme.expenseBg)
+        case .credit: return (Theme.creditFg, Theme.creditBg)
+        case .investment: return (Theme.investmentFg, Theme.investmentBg)
         }
     }
 }
