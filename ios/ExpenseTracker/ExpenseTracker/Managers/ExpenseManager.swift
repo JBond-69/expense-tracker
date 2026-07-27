@@ -115,6 +115,45 @@ class ExpenseManager: SupabaseManager {
         }
     }
 
+    /// Deletes multiple expenses in a single PostgREST request (`id=in.(...)`)
+    /// instead of one DELETE per row, so a bulk-select delete from the Home
+    /// detail view doesn't fire N sequential requests/refetches.
+    func deleteExpenses(ids: [String], userID: String, completion: @escaping (Bool) -> Void = { _ in }) {
+        guard !ids.isEmpty else {
+            completion(true)
+            return
+        }
+        isLoading = true
+        errorMessage = nil
+
+        let idList = ids.joined(separator: ",")
+        let urlString = "\(supabaseURL)/rest/v1/expenses?id=in.(\(idList))"
+        guard let url = URL(string: urlString) else {
+            errorMessage = "Invalid URL"
+            isLoading = false
+            completion(false)
+            return
+        }
+
+        performRequest(url: url, method: "DELETE", body: nil) { data, response, error in
+            DispatchQueue.main.async {
+                self.isLoading = false
+                if let error = error {
+                    self.errorMessage = "Failed to delete expenses: \(error.localizedDescription)"
+                    completion(false)
+                    return
+                }
+                if let httpError = self.checkResponse(data, response) {
+                    self.errorMessage = httpError
+                    completion(false)
+                    return
+                }
+                self.fetchExpenses(userID: userID)
+                completion(true)
+            }
+        }
+    }
+
     func deleteExpense(id: String, userID: String) {
         isLoading = true
         errorMessage = nil

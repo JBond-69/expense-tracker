@@ -1,89 +1,68 @@
 import SwiftUI
 
+/// A single transaction row in the Home detail list view (design/mockups/
+/// Expense Tracker.dc.html `detail.rows`, lines 150-163). Tapping the
+/// checkbox toggles multi-select; tapping the rest of the row opens the
+/// existing edit sheet.
 struct ExpenseRowView: View {
     let expense: Expense
-    private var category: ExpenseCategory { ExpenseCategory(rawValue: expense.category) ?? .other }
+    let groupName: String
+    let isSelected: Bool
+    let onToggleSelect: () -> Void
+    let onTap: () -> Void
+
+    private static let dayFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.calendar = Calendar(identifier: .iso8601)
+        return formatter
+    }()
+
+    private static let dayLabelFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM"
+        return formatter
+    }()
+
+    private var dayLabel: String {
+        guard let date = Self.dayFormatter.date(from: expense.date) else { return expense.date }
+        return Self.dayLabelFormatter.string(from: date)
+    }
 
     var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: category.symbolName)
-                .font(.system(size: 16))
-                .foregroundColor(category.tint.fg)
-                .frame(width: 40, height: 40)
-                .background(category.tint.bg)
-                .cornerRadius(10)
+        HStack(spacing: 10) {
+            Button(action: onToggleSelect) {
+                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                    .font(.system(size: 18))
+                    .foregroundColor(isSelected ? Theme.primary : Theme.textTertiary)
+            }
+            .buttonStyle(.plain)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(expense.merchant)
-                    .font(Theme.Font.ui(15, weight: .semibold))
+                    .font(Theme.Font.ui(14, weight: .medium))
                     .foregroundColor(Theme.textPrimary)
-                Text(category.rawValue)
-                    .font(Theme.Font.ui(13))
-                    .foregroundColor(Theme.textSecondary)
+                    .lineLimit(1)
+                Text(groupName)
+                    .font(Theme.Font.ui(11))
+                    .foregroundColor(Theme.textTertiary)
+                    .lineLimit(1)
             }
 
-            Spacer()
+            Spacer(minLength: 8)
 
             VStack(alignment: .trailing, spacing: 2) {
-                Text("₹\(expense.amount, specifier: "%.2f")")
-                    .font(Theme.Font.mono(15, weight: .semibold))
-                    .foregroundColor(Theme.textPrimary)
-                Text(expense.date)
-                    .font(Theme.Font.ui(12))
+                Text(CurrencyFormat.rounded(expense.amount))
+                    .font(Theme.Font.mono(13, weight: .semibold))
+                    .foregroundColor(expense.type.accentColor)
+                Text(dayLabel)
+                    .font(Theme.Font.ui(11))
                     .foregroundColor(Theme.textTertiary)
             }
         }
-        .padding(14)
-    }
-}
-
-/// Preserves the existing swipe-to-delete interaction (native List .onDelete
-/// behavior) while letting rows live in a plain ScrollView/VStack so they can
-/// be styled as cards instead of default List rows.
-private struct SwipeToDeleteModifier: ViewModifier {
-    let action: () -> Void
-    @State private var offset: CGFloat = 0
-    @State private var revealed = false
-
-    func body(content: Content) -> some View {
-        ZStack(alignment: .trailing) {
-            Button(action: action) {
-                Image(systemName: "trash.fill")
-                    .foregroundColor(.white)
-                    .frame(width: 70)
-                    .frame(maxHeight: .infinity)
-                    .background(Color.red)
-            }
-            .opacity(revealed ? 1 : 0)
-
-            content
-                .background(Theme.surface)
-                .offset(x: offset)
-                .gesture(
-                    DragGesture()
-                        .onChanged { value in
-                            guard value.translation.width < 0 else { return }
-                            offset = max(value.translation.width, -70)
-                        }
-                        .onEnded { value in
-                            withAnimation(.easeOut(duration: 0.2)) {
-                                if value.translation.width < -35 {
-                                    offset = -70
-                                    revealed = true
-                                } else {
-                                    offset = 0
-                                    revealed = false
-                                }
-                            }
-                        }
-                )
-        }
-        .clipped()
-    }
-}
-
-extension View {
-    func swipeToDelete(action: @escaping () -> Void) -> some View {
-        modifier(SwipeToDeleteModifier(action: action))
+        .padding(.horizontal, 10)
+        .padding(.vertical, 10)
+        .contentShape(Rectangle())
+        .onTapGesture(perform: onTap)
     }
 }
