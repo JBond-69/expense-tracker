@@ -22,7 +22,9 @@ struct Expense: Identifiable, Codable {
     }
 }
 
-enum ExpenseCategory: String, CaseIterable {
+enum ExpenseCategory: String, CaseIterable, Hashable, Identifiable {
+    var id: String { rawValue }
+
     case food = "Food"
     case transport = "Transport"
     case shopping = "Shopping"

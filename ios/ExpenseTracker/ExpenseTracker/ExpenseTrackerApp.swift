@@ -7,7 +7,7 @@ struct ExpenseTrackerApp: App {
     var body: some Scene {
         WindowGroup {
             if authManager.isLoggedIn {
-                MainTabView()
+                MainTabView(authManager: authManager)
                     .environmentObject(authManager)
             } else {
                 LoginView()
