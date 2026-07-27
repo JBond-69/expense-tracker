@@ -17,6 +17,12 @@ enum Theme {
 
     static let expenseFg = Color(hex: "#BF1D30")
     static let expenseBg = Color(hex: "#FBEAEB")
+    static let creditFg = Color(hex: "#037C5A")
+    static let creditBg = Color(hex: "#E3F7EB")
+    static let investmentFg = Color(hex: "#5C25F7")
+    static let investmentBg = Color(hex: "#F2DCFA")
+    static let savingsFg = Color(hex: "#2A4CC5")
+    static let savingsBg = Color(hex: "#F1F4FE")
 
     static let loginBackground = Color(hex: "#07133E")
 
@@ -65,6 +71,43 @@ extension ExpenseCategory {
         case .health: return "cross.case.fill"
         case .other: return "ellipsis.circle.fill"
         }
+    }
+}
+
+extension TransactionType {
+    /// Accent/tint pair per design/mockups/Expense Tracker.dc.html TYPE_META
+    /// (line 649) — used for amount text and summary-card chips.
+    var accentColor: Color {
+        switch self {
+        case .expense: return Theme.expenseFg
+        case .credit: return Theme.creditFg
+        case .investment: return Theme.investmentFg
+        }
+    }
+
+    var tintBg: Color {
+        switch self {
+        case .expense: return Theme.expenseBg
+        case .credit: return Theme.creditBg
+        case .investment: return Theme.investmentBg
+        }
+    }
+}
+
+/// Matches the mockup's `fmt(n)` helper (Roboto Mono, en-IN grouping, no
+/// decimals) so month/category subtotals render identically to the design.
+enum CurrencyFormat {
+    private static let formatter: NumberFormatter = {
+        let f = NumberFormatter()
+        f.numberStyle = .decimal
+        f.locale = Locale(identifier: "en_IN")
+        f.maximumFractionDigits = 0
+        return f
+    }()
+
+    static func rounded(_ value: Double) -> String {
+        let rounded = value.rounded()
+        return "₹" + (formatter.string(from: NSNumber(value: rounded)) ?? String(Int(rounded)))
     }
 }
 
