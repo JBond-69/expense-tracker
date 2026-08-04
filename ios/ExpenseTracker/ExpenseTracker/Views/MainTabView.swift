@@ -31,7 +31,9 @@ struct MainTabView: View {
                     Label("Insights", systemImage: "chart.bar.fill")
                 }
 
-            StubTabView(title: "Account", systemImage: "person.crop.circle.fill", message: "Account settings coming soon.")
+            AccountView(authManager: authManager)
+                .environmentObject(expenseManager)
+                .environmentObject(authManager)
                 .tabItem {
                     Label("Account", systemImage: "person.crop.circle.fill")
                 }
